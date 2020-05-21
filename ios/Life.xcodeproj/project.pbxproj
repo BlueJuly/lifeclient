@@ -17,6 +17,9 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LifeTests.m */; };
+		53185CDD246656BA00D40984 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CDC246656BA00D40984 /* libc.tbd */; };
+		53185CDF246656D500D40984 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CDE246656D500D40984 /* libc++.tbd */; };
+		53185CE1246656F600D40984 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CE0246656F600D40984 /* libsqlite3.tbd */; };
 		78C0A62D87FB1E316C23603A /* libPods-Life-LifeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5DFBD485935F8D5F0C9DC /* libPods-Life-LifeTests.a */; };
 		948BD2A4CAF729712935EF9B /* libPods-Life-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EF9EDDD6AE1DB2CE0F8D6C /* libPods-Life-tvOSTests.a */; };
 		BDCE21E2AB8512EDA8D98E41 /* libPods-Life.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ED7868EDD73DE9A4B2957E /* libPods-Life.a */; };
@@ -58,6 +61,9 @@
 		2D02E4901E0B4A5D006451C7 /* Life-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Life-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32EF9EDDD6AE1DB2CE0F8D6C /* libPods-Life-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB5DFBD485935F8D5F0C9DC /* libPods-Life-LifeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life-LifeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53185CDC246656BA00D40984 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
+		53185CDE246656D500D40984 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		53185CE0246656F600D40984 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		66514E6D802C445028FD2F19 /* libPods-Life-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68360EA77987026DEEB16612 /* Pods-Life-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Life-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Life-tvOSTests/Pods-Life-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE851B611905A407399CC05E /* Pods-Life-LifeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Life-LifeTests.release.xcconfig"; path = "Target Support Files/Pods-Life-LifeTests/Pods-Life-LifeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -82,6 +88,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53185CE1246656F600D40984 /* libsqlite3.tbd in Frameworks */,
+				53185CDF246656D500D40984 /* libc++.tbd in Frameworks */,
+				53185CDD246656BA00D40984 /* libc.tbd in Frameworks */,
 				BDCE21E2AB8512EDA8D98E41 /* libPods-Life.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +148,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53185CE0246656F600D40984 /* libsqlite3.tbd */,
+				53185CDE246656D500D40984 /* libc++.tbd */,
+				53185CDC246656BA00D40984 /* libc.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				B2ED7868EDD73DE9A4B2957E /* libPods-Life.a */,
