@@ -265,8 +265,8 @@ class RCTWebRTCDemo extends Component {
     setTimeout(async () => {
       const permission = await InCallManager.checkRecordPermission();
       console.log(permission);
-      InCallManager.start({ media: 'audio' });
-      InCallManager.setForceSpeakerphoneOn(true);
+      InCallManager.start({ media: 'video' });
+      //InCallManager.setForceSpeakerphoneOn(true);
     }, 500);
     socket.on('exchange', function(data){
       exchange(data);
