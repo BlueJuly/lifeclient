@@ -73,6 +73,7 @@ target 'Life' do
   pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga', :modular_headers => true
   pod 'react-native-webrtc', :path => '../node_modules/react-native-webrtc'
+  pod 'ReactNativeIncallManager', :path => '../node_modules/react-native-incall-manager'
 
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'

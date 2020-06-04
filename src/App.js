@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import Draggable from 'react-native-draggable';
 import io from 'socket.io-client';
-
+import InCallManager from 'react-native-incall-manager';
 
 import {
   RTCPeerConnection,
@@ -69,7 +69,7 @@ function createPC(socketId, isOffer) {
   pcPeers[socketId] = pc;
 
   pc.onicecandidate = function (event) {
-    console.log('onicecandidate', event.candidate);
+    //console.log('onicecandidate', event.candidate);
     if (event.candidate) {
       socket.emit('exchange', {'to': socketId, 'candidate': event.candidate });
     }
@@ -77,7 +77,7 @@ function createPC(socketId, isOffer) {
 
   async function createOffer() {
     console.log('---create offer function---');
-    console.log(pc);
+    //console.log(pc);
     try {
       let offer = await pc.createOffer();
       console.log('---create offer done---');
@@ -115,14 +115,14 @@ function createPC(socketId, isOffer) {
   };
 
   pc.onaddstream = function (event) {
-    console.log('onaddstream', event.stream);
+    //console.log('onaddstream', event.stream);
     container.setState({info: 'One peer join!'});
 
     const remoteList = container.state.remoteList;
     remoteList[socketId] = event.stream.toURL();
     container.setState({ remoteList: remoteList });
     console.log('-----remote list2------');
-    console.log(container.state.remoteList);
+    //console.log(container.state.remoteList);
   };
   pc.onremovestream = function (event) {
     console.log('onremovestream', event.stream);
@@ -140,7 +140,7 @@ function createPC(socketId, isOffer) {
     };
 
     dataChannel.onmessage = function (event) {
-      console.log('dataChannel.onmessage:', event.data);
+      //console.log('dataChannel.onmessage:', event.data);
       container.receiveTextData({user: socketId, message: event.data});
     };
 
@@ -168,21 +168,21 @@ async function exchange(data) {
   }
 
   if (data.sdp) {
-    console.log('exchange sdp', data);
+    //console.log('exchange sdp', data);
     try {
       await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
       if (pc.remoteDescription.type == 'offer') {
         let answer = await pc.createAnswer();
-        console.log('createAnswer done', answer);
+        //console.log('createAnswer done', answer);
         await pc.setLocalDescription(answer);
-        console.log('setRemoteDescription done', pc.localDescription);
+        //console.log('setRemoteDescription done', pc.localDescription);
         socket.emit('exchange', {'to': fromId, 'sdp': pc.localDescription });
       }
     } catch (error) {
       console.log(error);
     }
   } else {
-    console.log('exchange candidate', data);
+    //console.log('exchange candidate', data);
     pc.addIceCandidate(new RTCIceCandidate(data.candidate));
   }
 }
@@ -218,7 +218,7 @@ function getStats() {
   const pc = pcPeers[Object.keys(pcPeers)[0]];
   if (pc.getRemoteStreams()[0] && pc.getRemoteStreams()[0].getAudioTracks()[0]) {
     const track = pc.getRemoteStreams()[0].getAudioTracks()[0];
-    console.log('track', track);
+    //console.log('track', track);
     pc.getStats(track, function(report) {
       console.log('getStats report', report);
     }, logError);
@@ -262,6 +262,12 @@ class RCTWebRTCDemo extends Component {
       query: {device: deviceType},
       transports: ['websocket'],
     });
+    setTimeout(async () => {
+      const permission = await InCallManager.checkRecordPermission();
+      console.log(permission);
+      InCallManager.start({ media: 'audio' });
+      InCallManager.setForceSpeakerphoneOn(true);
+    }, 500);
     socket.on('exchange', function(data){
       exchange(data);
     });
@@ -315,7 +321,7 @@ class RCTWebRTCDemo extends Component {
           <TouchableOpacity
             style={styles.reverseCameraButton}
             onPress={this._switchVideoType}>
-            <Text style={styles.reverseCameraText}>Switch</Text>
+            <Text style={styles.reverseCameraText}>Switch Camera</Text>
           </TouchableOpacity>
         </View>
         <Draggable style={{position:'absolute'}}>
@@ -362,12 +368,12 @@ const styles = StyleSheet.create({
     borderWidth: 3,
   },
   reverseCameraButton:{
+    flex:1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   reverseCameraText:{
-    justifyContent: 'center',
-    alignItems: 'center',
+    textAlign: 'center',
   }
 });
 export default RCTWebRTCDemo;
