@@ -17,6 +17,7 @@ import {
 import Draggable from 'react-native-draggable';
 import io from 'socket.io-client';
 import InCallManager from 'react-native-incall-manager';
+import {Container, Icon} from 'native-base';
 
 import {
   RTCPeerConnection,
@@ -317,12 +318,14 @@ class RCTWebRTCDemo extends Component {
           streamURL={this.state.selfViewSrc}
           style={styles.selfView}
         />
+        
         <View style={styles.reverseCameraView}>
-          <TouchableOpacity
+          <Icon  name="home" />
+          {/* <TouchableOpacity
             style={styles.reverseCameraButton}
             onPress={this._switchVideoType}>
             <Text style={styles.reverseCameraText}>Switch Camera</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <Draggable style={{position:'absolute'}}>
           <RTCView streamURL={this.state.remoteList[Object.keys(this.state.remoteList)[0]]} style={styles.remoteView}/>

@@ -74,6 +74,7 @@ target 'Life' do
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga', :modular_headers => true
   pod 'react-native-webrtc', :path => '../node_modules/react-native-webrtc'
   pod 'ReactNativeIncallManager', :path => '../node_modules/react-native-incall-manager'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
