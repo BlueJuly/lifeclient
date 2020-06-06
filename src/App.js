@@ -15,7 +15,7 @@ import {
   Dimensions,
 } from 'react-native';
 import Draggable from 'react-native-draggable';
-import messaging from '@react-native-firebase/messaging';
+import messaging, { AuthorizationStatus } from '@react-native-firebase/messaging';
 import io from 'socket.io-client';
 import InCallManager from 'react-native-incall-manager';
 import {Container, Icon} from 'native-base';
@@ -270,6 +270,13 @@ class RCTWebRTCDemo extends Component {
       InCallManager.start({ media: 'video' });
       //InCallManager.setForceSpeakerphoneOn(true);
     }, 500);
+    const authStatus = await messaging().requestPermission();
+    // const enabled =
+    //   authStatus === AuthorizationStatus.AUTHORIZED || authStatus === AuthorizationStatus.PROVISIONAL;
+
+    // if (enabled) {
+    //   console.log('Authorization status:', authStatus);
+    // }
     messaging()
     .getToken()
     .then(token => {
