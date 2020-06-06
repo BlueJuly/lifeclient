@@ -1,4 +1,4 @@
-package com.life;
+package com.mozzaz.caredev;
 
 import com.facebook.react.ReactActivity;
 

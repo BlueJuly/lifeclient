@@ -20,6 +20,7 @@
 		53185CDD246656BA00D40984 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CDC246656BA00D40984 /* libc.tbd */; };
 		53185CDF246656D500D40984 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CDE246656D500D40984 /* libc++.tbd */; };
 		53185CE1246656F600D40984 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53185CE0246656F600D40984 /* libsqlite3.tbd */; };
+		535A5D64248B68FD00EC37D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 535A5D63248B68FD00EC37D3 /* GoogleService-Info.plist */; };
 		78C0A62D87FB1E316C23603A /* libPods-Life-LifeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5DFBD485935F8D5F0C9DC /* libPods-Life-LifeTests.a */; };
 		948BD2A4CAF729712935EF9B /* libPods-Life-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EF9EDDD6AE1DB2CE0F8D6C /* libPods-Life-tvOSTests.a */; };
 		BDCE21E2AB8512EDA8D98E41 /* libPods-Life.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ED7868EDD73DE9A4B2957E /* libPods-Life.a */; };
@@ -64,6 +65,7 @@
 		53185CDC246656BA00D40984 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		53185CDE246656D500D40984 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		53185CE0246656F600D40984 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		535A5D63248B68FD00EC37D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66514E6D802C445028FD2F19 /* libPods-Life-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68360EA77987026DEEB16612 /* Pods-Life-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Life-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Life-tvOSTests/Pods-Life-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE851B611905A407399CC05E /* Pods-Life-LifeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Life-LifeTests.release.xcconfig"; path = "Target Support Files/Pods-Life-LifeTests/Pods-Life-LifeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				535A5D63248B68FD00EC37D3 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Life */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LifeTests */,
@@ -357,6 +360,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				535A5D64248B68FD00EC37D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

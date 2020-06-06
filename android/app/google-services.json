@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "673035871462",
+    "firebase_url": "https://bluejuly-1105.firebaseio.com",
+    "project_id": "bluejuly-1105",
+    "storage_bucket": "bluejuly-1105.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673035871462:android:fb7ab569fdb02cddd80727",
+        "android_client_info": {
+          "package_name": "com.mozzaz.caredev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfDkKgc8hxJ5iScO0Dl_i_p27dlIFNZkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673035871462-56mrpr0ek95jv30mpanvk9gc48rk0ln4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "673035871462-ui1f2fipdefcbd7lq6i4k30qbmvsbld1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mozzaz.caredev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
