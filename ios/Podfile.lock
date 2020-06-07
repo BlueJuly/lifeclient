@@ -383,6 +383,8 @@ PODS:
     - ReactCommon/callinvoker (= 0.62.2)
   - ReactNativeIncallManager (3.2.7):
     - React
+  - RNCAsyncStorage (1.11.0):
+    - React
   - RNFBApp (7.2.0):
     - Firebase/CoreOnly (~> 6.25.0)
     - React
@@ -446,6 +448,7 @@ DEPENDENCIES:
   - ReactCommon/callinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeIncallManager (from `../node_modules/react-native-incall-manager`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -535,6 +538,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeIncallManager:
     :path: "../node_modules/react-native-incall-manager"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBMessaging:
@@ -598,6 +603,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
   ReactNativeIncallManager: 35e387f58d3fc6e8cc042f47a2256b5f50134a67
+  RNCAsyncStorage: db711e29e5e0500d9bd21aa0c2e397efa45302b1
   RNFBApp: 09caf098f066a44cf6f7ce9ea7dbc8b980ca10ec
   RNFBMessaging: a914f734937d45855ea8b63d5fd198e2c5ee3972
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
