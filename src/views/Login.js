@@ -34,7 +34,10 @@ export class Login extends Component {
                 <TextInput placeholder="Username" style={styles.textInput} />
                 <TextInput placeholder="Password" style={styles.textInput} />
                 <View style={styles.btnContainer}>
-                  <Button title="Submit" onPress={() => this.props.login()} />
+                  <Button
+                    title="Submit"
+                    onPress={() => this.props.navigation.navigate('Homepage')}
+                  />
                 </View>
               </View>
             </TouchableWithoutFeedback>

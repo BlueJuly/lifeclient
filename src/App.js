@@ -6,8 +6,8 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import LOGIN from './views/Login';
-
+import Login from './views/Login';
+import Homepage from './views/Homepage';
 const Stack = createStackNavigator();
 
 export default class App extends Component {
@@ -16,10 +16,15 @@ export default class App extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName="Login">
               <Stack.Screen
-                name="LOGIN"
-                component={LOGIN}
+                name="Login"
+                component={Login}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Homepage"
+                component={Homepage}
                 options={{headerShown: false}}
               />
             </Stack.Navigator>
