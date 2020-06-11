@@ -17,7 +17,11 @@ export default class App extends Component {
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
             <Stack.Navigator>
-              <Stack.Screen name="Home" component={LOGIN} />
+              <Stack.Screen
+                name="LOGIN"
+                component={LOGIN}
+                options={{headerShown: false}}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </PersistGate>
