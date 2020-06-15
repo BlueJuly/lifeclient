@@ -1,18 +1,30 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Badge } from 'native-base';
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Icon,
+  Text,
+  Badge,
+} from 'native-base';
 import {connect} from 'react-redux';
 
 export class Homepage extends Component {
   render() {
     return (
-        <Container>
+      <Container>
         <Header />
         <Content />
         <Footer>
           <FooterTab>
             <Button badge vertical>
-              <Badge success><Text>2</Text></Badge>
+              <Badge success>
+                <Text>2</Text>
+              </Badge>
               <Icon name="home" />
               <Text>Pages</Text>
             </Button>
@@ -21,7 +33,9 @@ export class Homepage extends Component {
               <Text>Schedules</Text>
             </Button>
             <Button active badge vertical>
-              <Badge ><Text>51</Text></Badge>
+              <Badge>
+                <Text>51</Text>
+              </Badge>
               <Icon active name="navigate" />
               <Text>Navigate</Text>
             </Button>

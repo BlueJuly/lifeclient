@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   Button,
@@ -16,36 +16,48 @@ import {connect} from 'react-redux';
 import {login} from '../redux/actions';
 //import {View} from 'native-base';
 const LOGO_PIC = require('../assets/images/logo_1024px.png');
-export class Login extends Component {
-  render() {
-    console.log(this.props.user.user.address);
-    return (
-      <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-          style={styles.loginView}>
-          <View style={styles.loginView}>
-            <View style={styles.logoPicView}>
-              <Image source={LOGO_PIC} style={styles.logoPic} />
-            </View>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              <View style={styles.inner}>
-                <Text> {this.props.user.user.address} </Text>
-                <TextInput placeholder="Username" style={styles.textInput} />
-                <TextInput placeholder="Password" style={styles.textInput} />
-                <View style={styles.btnContainer}>
-                  <Button
-                    title="Submit"
-                    onPress={() => this.props.navigation.navigate('Homepage')}
-                  />
-                </View>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    );
+function Login(props) {
+  const [username, setUsername] = useState('123');
+  const [password, setPassword] = useState('456');
+  useEffect(() => {
+    console.log(username);
+    console.log(password);
+  });
+  function temp() {
+    console.log('*****', username);
+    console.log('*****', password);
+    props.login(username, password, props.navigation);
   }
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.loginView}>
+        <View style={styles.loginView}>
+          <View style={styles.logoPicView}>
+            <Image source={LOGO_PIC} style={styles.logoPic} />
+          </View>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.inner}>
+              <TextInput
+                placeholder="Username"
+                onChangeText={text => setUsername(text)}
+                style={styles.textInput}
+              />
+              <TextInput
+                placeholder="Password"
+                onChangeText={text => setPassword(text)}
+                style={styles.textInput}
+              />
+              <View style={styles.btnContainer}>
+                <Button title="Submit" onPress={() => temp()} />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -86,7 +98,8 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps = ({user}) => {
-  return {user};
+  console.log('----user in view is-----', user);
+  return user;
 };
 
 const mapDispatchToProps = {

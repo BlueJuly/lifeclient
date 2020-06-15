@@ -1,7 +1,6 @@
 import {LOGIN, LOGINSUCCESS, LOGINFAILED} from '../type';
 const initialState = {
   loading: false,
-  token: '',
   user: {},
   err: '',
 };
@@ -13,8 +12,9 @@ export default (state = initialState, action) => {
       return {...state, loading: true};
     }
     case LOGINSUCCESS: {
-      const {token, user} = action.payload;
-      return {...state, token, user, loading: false};
+      const user = action.payload;
+      console.log('-----user reducer----', {...state, user, loading: false});
+      return {...state, user, loading: false};
     }
     case LOGINFAILED: {
       const {err} = action.payload;
