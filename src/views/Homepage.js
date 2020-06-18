@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
+import { getUniqueId, getManufacturer, getSystemVersion, getBrand } from 'react-native-device-info';
 import {
   Container,
   Header,
@@ -15,6 +16,11 @@ import {connect} from 'react-redux';
 
 function Homepage() {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
+  useEffect(() => {
+    console.log('+++Device Info++++');
+    console.log(getSystemVersion());
+    console.log(getBrand());
+  }, [activeMenuButton]);
   return (
     <Container>
       <Header />
