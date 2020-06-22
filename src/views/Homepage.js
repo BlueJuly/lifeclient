@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
-import { getUniqueId, getManufacturer, getSystemVersion, getBrand } from 'react-native-device-info';
+
 import {
   Container,
   Header,
@@ -13,14 +13,12 @@ import {
   Badge,
 } from 'native-base';
 import {connect} from 'react-redux';
-
-function Homepage() {
+import {updateDeviceInfo} from '../redux/actions';
+function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   useEffect(() => {
-    console.log('+++Device Info++++');
-    console.log(getSystemVersion());
-    console.log(getBrand());
-  }, [activeMenuButton]);
+    props.updateDeviceInfo(props.user);
+  }, []);
   return (
     <Container>
       <Header />
@@ -69,9 +67,14 @@ function Homepage() {
   );
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = ({user}) => {
+  console.log('----user in homepage is-----', user);
+  return user;
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateDeviceInfo,
+};
 
 export default connect(
   mapStateToProps,
