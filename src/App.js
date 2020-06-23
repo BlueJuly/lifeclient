@@ -16,10 +16,8 @@ export default function App() {
   const [initialState, setInitialState] = React.useState();
 
   React.useEffect(() => {
-    console.log('step 1');
     const restoreState = async () => {
       try {
-        console.log('step 2');
         // Only restore state if there's no deep link and we're not on web
         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
         const state = savedStateString
@@ -40,7 +38,6 @@ export default function App() {
   }, [isReady]);
 
   if (!isReady) {
-    console.log('step 3');
     return null;
   }
   return (

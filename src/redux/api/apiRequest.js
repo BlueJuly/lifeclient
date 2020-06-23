@@ -33,8 +33,8 @@ export const updateMobileDeviceInfoRequest = async function(user) {
     });
     //console.log('----this is res from update device info request1----', user);
     let resJson = await res.json();
-    console.log('----this is res from update device info request2----', resJson);
-    return user;
+    //console.log('----this is res from update device info request2----', resJson);
+    return resJson;
   } catch (error) {
     return error;
   }

@@ -17,7 +17,7 @@ import {updateDeviceInfo} from '../redux/actions';
 function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   useEffect(() => {
-    props.updateDeviceInfo(props.user);
+    props.updateDeviceInfo();
   }, []);
   return (
     <Container>
@@ -67,9 +67,9 @@ function Homepage(props) {
   );
 }
 
-const mapStateToProps = ({user}) => {
-  console.log('----user in homepage is-----', user);
-  return user;
+const mapStateToProps = ({userReducer}) => {
+  //console.log('----user in homepage is-----', userReducer);
+  return userReducer;
 };
 
 const mapDispatchToProps = {

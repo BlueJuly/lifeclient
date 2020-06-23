@@ -19,10 +19,7 @@ const LOGO_PIC = require('../assets/images/logo_1024px.png');
 function Login(props) {
   const [username, setUsername] = useState('123');
   const [password, setPassword] = useState('456');
-  useEffect(() => {
-    console.log(username);
-    console.log(password);
-  });
+  useEffect(() => {});
   function temp() {
     console.log('*****', username);
     console.log('*****', password);
@@ -97,9 +94,9 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 });
-const mapStateToProps = ({user}) => {
-  console.log('----user in view is-----', user);
-  return user;
+const mapStateToProps = ({userReducer}) => {
+  //console.log('----user in Login view is-----', userReducer);
+  return userReducer;
 };
 
 const mapDispatchToProps = {

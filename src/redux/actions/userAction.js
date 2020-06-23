@@ -18,12 +18,14 @@ export const login = (username, password, navigation) => async (
     dispatch({type: LOGINFAILED, payload: {err: 'loged in failed'}});
   }
 };
-export const updateDeviceInfo = (user) => async (dispatch, getState) => {
+
+export const updateDeviceInfo = () => async (dispatch, getState) => {
   try {
+    let {user} = getState().userReducer;
     console.log('----this is user from update device info action 1----', user);
-    let mobileDeviceInfo = await getMobileDeviceInfo();
+    const mobileDeviceInfo = await getMobileDeviceInfo();
     user.mobileDevice = mobileDeviceInfo;
-    updateMobileDeviceInfoRequest(user);
+    user = await updateMobileDeviceInfoRequest(user);
     console.log('----this is user from update device info action 2----', user);
     // const {authToken} = data;
     dispatch({type: UPDATE_DEVICE_INFO, payload: user});
