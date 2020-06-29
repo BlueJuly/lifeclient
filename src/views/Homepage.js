@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 
 import {
   Container,
@@ -11,6 +11,12 @@ import {
   Icon,
   Text,
   Badge,
+  Card,
+  CardItem,
+  Thumbnail,
+  Left,
+  Body,
+  Right,
 } from 'native-base';
 import {connect} from 'react-redux';
 import {updateDeviceInfo} from '../redux/actions';
@@ -20,11 +26,51 @@ function Homepage(props) {
   useEffect(() => {
     props.updateDeviceInfo();
     props.getUserTiles();
+    console.log('----reducers in homepage is-----', props);
   }, []);
   return (
     <Container>
       <Header />
-      <Content />
+      <Content>
+        {props.tilesReducer.tiles.map((tile, index) => {
+          return (
+            <Card>
+              <CardItem>
+                <Left>
+                  <Thumbnail source={{uri: tile.profileImage.blobUrl}} />
+                  <Body>
+                    <Text>{tile.tileName}</Text>
+                    <Text note>GeekyAnts</Text>
+                  </Body>
+                </Left>
+              </CardItem>
+              <CardItem cardBody>
+                <Image
+                  source={{uri: tile.profileImage.blobUrl}}
+                  style={{height: 200, width: null, flex: 1}}
+                />
+              </CardItem>
+              <CardItem>
+                <Left>
+                  <Button transparent>
+                    <Icon active name="thumbs-up" />
+                    <Text>12 Likes</Text>
+                  </Button>
+                </Left>
+                <Body>
+                  <Button transparent>
+                    <Icon active name="chatbubbles" />
+                    <Text>4 Comments</Text>
+                  </Button>
+                </Body>
+                <Right>
+                  <Text>11h ago</Text>
+                </Right>
+              </CardItem>
+            </Card>
+          );
+        })}
+      </Content>
       <Footer>
         <FooterTab>
           <Button
@@ -69,9 +115,9 @@ function Homepage(props) {
   );
 }
 
-const mapStateToProps = ({userReducer}) => {
+const mapStateToProps = ({userReducer, tilesReducer}) => {
   //console.log('----user in homepage is-----', userReducer);
-  return userReducer;
+  return {userReducer, tilesReducer};
 };
 
 const mapDispatchToProps = {
