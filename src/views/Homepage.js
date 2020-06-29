@@ -14,10 +14,12 @@ import {
 } from 'native-base';
 import {connect} from 'react-redux';
 import {updateDeviceInfo} from '../redux/actions';
+import {getUserTiles} from '../redux/actions/tilesAction';
 function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   useEffect(() => {
     props.updateDeviceInfo();
+    props.getUserTiles();
   }, []);
   return (
     <Container>
@@ -74,6 +76,7 @@ const mapStateToProps = ({userReducer}) => {
 
 const mapDispatchToProps = {
   updateDeviceInfo,
+  getUserTiles,
 };
 
 export default connect(
