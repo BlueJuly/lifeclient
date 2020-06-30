@@ -24,36 +24,15 @@ import {getUserTiles} from '../redux/actions/tilesAction';
 function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [imageVisible, setImageVisible] = useState(false);
-  const images = [
-    {
-      uri: 'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4',
-    },
-    {
-      uri: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
-    },
-    {
-      uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
-    },
-  ];
-  // function openImageTile() {
-  //   const images = [
-  //     {
-  //       uri: "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4",
-  //     },
-  //     {
-  //       uri: "https://images.unsplash.com/photo-1573273787173-0eb81a833b34",
-  //     },
-  //     {
-  //       uri: "https://images.unsplash.com/photo-1569569970363-df7b6160d111",
-  //     },
-  //   ];
-  //   return (<ImageView
-  //     images={images}
-  //     imageIndex={0}
-  //     visible={visible}
-  //     onRequestClose={() => setIsVisible(false)}
-  //   />);
-  // }
+  const [tileImages, setTileImages] = useState([]);
+
+  function openImageTile(tile) {
+    const images = tile.resource.map(function(item) {
+      return {uri: item.blobUrl};
+    });
+    setTileImages(images);
+    setImageVisible(true);
+  }
   useEffect(() => {
     props.updateDeviceInfo();
     props.getUserTiles();
@@ -64,7 +43,7 @@ function Homepage(props) {
       <Header />
       <Content>
         <ImageView
-          images={images}
+          images={tileImages}
           imageIndex={0}
           visible={imageVisible}
           onRequestClose={() => setImageVisible(false)}
@@ -74,7 +53,7 @@ function Homepage(props) {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                setImageVisible(true);
+                openImageTile(tile);
               }}>
               <Card>
                 <CardItem>
