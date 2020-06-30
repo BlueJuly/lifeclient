@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
-
+import ImageView from 'react-native-image-viewing';
 import {
   Container,
   Header,
@@ -23,6 +23,37 @@ import {updateDeviceInfo} from '../redux/actions';
 import {getUserTiles} from '../redux/actions/tilesAction';
 function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
+  const [imageVisible, setImageVisible] = useState(false);
+  const images = [
+    {
+      uri: 'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4',
+    },
+    {
+      uri: 'https://images.unsplash.com/photo-1573273787173-0eb81a833b34',
+    },
+    {
+      uri: 'https://images.unsplash.com/photo-1569569970363-df7b6160d111',
+    },
+  ];
+  // function openImageTile() {
+  //   const images = [
+  //     {
+  //       uri: "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4",
+  //     },
+  //     {
+  //       uri: "https://images.unsplash.com/photo-1573273787173-0eb81a833b34",
+  //     },
+  //     {
+  //       uri: "https://images.unsplash.com/photo-1569569970363-df7b6160d111",
+  //     },
+  //   ];
+  //   return (<ImageView
+  //     images={images}
+  //     imageIndex={0}
+  //     visible={visible}
+  //     onRequestClose={() => setIsVisible(false)}
+  //   />);
+  // }
   useEffect(() => {
     props.updateDeviceInfo();
     props.getUserTiles();
@@ -32,12 +63,18 @@ function Homepage(props) {
     <Container>
       <Header />
       <Content>
+        <ImageView
+          images={images}
+          imageIndex={0}
+          visible={imageVisible}
+          onRequestClose={() => setImageVisible(false)}
+        />
         {props.tilesReducer.tiles.map((tile, index) => {
           return (
             <TouchableOpacity
               key={index}
               onPress={() => {
-                console.log('press me');
+                setImageVisible(true);
               }}>
               <Card>
                 <CardItem>
