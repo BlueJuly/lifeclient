@@ -31,7 +31,7 @@ export const updateMobileDeviceInfoRequest = async function(user) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({mobileDevice: user.mobileDevice}),
     });
     //console.log('----this is res from update device info request1----', user);
     let resJson = await res.json();

@@ -53,7 +53,9 @@ function Homepage(props) {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                openImageTile(tile);
+                if (tile.type == 'images') {
+                  openImageTile(tile);
+                }
               }}>
               <Card>
                 <CardItem>
@@ -67,7 +69,7 @@ function Homepage(props) {
                 </CardItem>
                 <CardItem cardBody>
                   <Image
-                    source={{uri: tile.resource[0].blobUrl}}
+                    source={{uri: tile.profileImage.blobUrl}}
                     style={{height: 200, width: null, flex: 1}}
                   />
                 </CardItem>
