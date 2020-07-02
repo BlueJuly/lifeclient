@@ -9,6 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './views/Login';
 import Homepage from './views/Homepage';
+import VideoPlayer from './views/VideoPlayer';
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default function App() {
@@ -45,9 +46,11 @@ export default function App() {
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer
           initialState={initialState}
-          onStateChange={state =>
-            AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-          }>
+          onStateChange={state => {
+            if (state.routes[state.routes.length - 1].name !== 'VideoPlayer') {
+              AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state));
+            }
+          }}>
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
               name="Login"
@@ -57,6 +60,11 @@ export default function App() {
             <Stack.Screen
               name="Homepage"
               component={Homepage}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="VideoPlayer"
+              component={VideoPlayer}
               options={{headerShown: false}}
             />
           </Stack.Navigator>

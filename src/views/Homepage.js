@@ -18,6 +18,7 @@ import {
   Body,
   Right,
 } from 'native-base';
+import Video from 'react-native-video';
 import {connect} from 'react-redux';
 import {updateDeviceInfo} from '../redux/actions';
 import {getUserTiles} from '../redux/actions/tilesAction';
@@ -25,13 +26,16 @@ function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [imageVisible, setImageVisible] = useState(false);
   const [tileImages, setTileImages] = useState([]);
-
+  const {navigation} = props;
   function openImageTile(tile) {
     const images = tile.resource.map(function(item) {
       return {uri: item.blobUrl};
     });
     setTileImages(images);
     setImageVisible(true);
+  }
+  function openVideoTile(tile) {
+    props.navigation.navigate('VideoPlayer', tile);
   }
   useEffect(() => {
     props.updateDeviceInfo();
@@ -48,13 +52,16 @@ function Homepage(props) {
           visible={imageVisible}
           onRequestClose={() => setImageVisible(false)}
         />
-        {props.tilesReducer.tiles.map((tile, index) => {
+        {props.tiles.map((tile, index) => {
           return (
             <TouchableOpacity
               key={index}
               onPress={() => {
-                if (tile.type == 'images') {
+                if (tile.type === 'images') {
                   openImageTile(tile);
+                }
+                if (tile.type === 'video') {
+                  openVideoTile(tile);
                 }
               }}>
               <Card>
@@ -141,7 +148,8 @@ function Homepage(props) {
 
 const mapStateToProps = ({userReducer, tilesReducer}) => {
   //console.log('----user in homepage is-----', userReducer);
-  return {userReducer, tilesReducer};
+  const {tiles} = tilesReducer;
+  return {tiles};
 };
 
 const mapDispatchToProps = {

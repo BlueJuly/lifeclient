@@ -12,7 +12,9 @@ export const login = (username, password, navigation) => async (
     let user = await loginRequest(username, password);
     console.log('----this is user from action----', user);
     dispatch({type: LOGINSUCCESS, payload: user});
-    navigation.dispatch(CommonActions.navigate({name: 'Homepage'}));
+    navigation.dispatch(
+      CommonActions.reset({index: 0, routes: [{name: 'Homepage'}]}),
+    );
   } catch (err) {
     console.log('----error in action----', err);
     dispatch({type: LOGINFAILED, payload: {err: 'loged in failed'}});
