@@ -137,8 +137,8 @@ function Homepage(props) {
             <Badge>
               <Text>51</Text>
             </Badge>
-            <Icon name="navigate" />
-            <Text>Navigate</Text>
+            <Icon type="FontAwesome5" name="users-cog" />
+            <Text>Manage</Text>
           </Button>
         </FooterTab>
       </Footer>
