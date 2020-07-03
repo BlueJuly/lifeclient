@@ -10,6 +10,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './views/Login';
 import Homepage from './views/Homepage';
 import VideoPlayer from './views/VideoPlayer';
+import PDFReader from './views/PDFReader';
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default function App() {
@@ -65,6 +66,11 @@ export default function App() {
             <Stack.Screen
               name="VideoPlayer"
               component={VideoPlayer}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PDFReader"
+              component={PDFReader}
               options={{headerShown: false}}
             />
           </Stack.Navigator>

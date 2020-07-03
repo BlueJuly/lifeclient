@@ -37,6 +37,9 @@ function Homepage(props) {
   function openVideoTile(tile) {
     props.navigation.navigate('VideoPlayer', tile);
   }
+  function openDocumentsTile(tile) {
+    props.navigation.navigate('PDFReader', tile);
+  }
   useEffect(() => {
     props.updateDeviceInfo();
     props.getUserTiles();
@@ -62,6 +65,9 @@ function Homepage(props) {
                 }
                 if (tile.type === 'video') {
                   openVideoTile(tile);
+                }
+                if (tile.type === 'documents') {
+                  openDocumentsTile(tile);
                 }
               }}>
               <Card>
