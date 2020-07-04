@@ -18,7 +18,6 @@ import {
   Body,
   Right,
 } from 'native-base';
-import Video from 'react-native-video';
 import {connect} from 'react-redux';
 import {updateDeviceInfo} from '../redux/actions';
 import {getUserTiles} from '../redux/actions/tilesAction';
@@ -39,6 +38,9 @@ function Homepage(props) {
   }
   function openDocumentsTile(tile) {
     props.navigation.navigate('PDFReader', tile);
+  }
+  function openWebViewTile(tile) {
+    props.navigation.navigate('WebView', tile);
   }
   useEffect(() => {
     props.updateDeviceInfo();
@@ -68,6 +70,9 @@ function Homepage(props) {
                 }
                 if (tile.type === 'documents') {
                   openDocumentsTile(tile);
+                }
+                if (tile.type === 'website') {
+                  openWebViewTile(tile);
                 }
               }}>
               <Card>

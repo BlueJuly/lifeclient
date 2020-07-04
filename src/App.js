@@ -11,6 +11,7 @@ import Login from './views/Login';
 import Homepage from './views/Homepage';
 import VideoPlayer from './views/VideoPlayer';
 import PDFReader from './views/PDFReader';
+import WebView from './views/WebView';
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default function App() {
@@ -71,6 +72,11 @@ export default function App() {
             <Stack.Screen
               name="PDFReader"
               component={PDFReader}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="WebView"
+              component={WebView}
               options={{headerShown: false}}
             />
           </Stack.Navigator>
