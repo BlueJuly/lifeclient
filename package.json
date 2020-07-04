@@ -32,6 +32,7 @@
     "react-native-screens": "^2.8.0",
     "react-native-video": "^5.0.2",
     "react-native-webrtc": "^1.75.3",
+    "react-native-webview": "^10.3.2",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",

@@ -2,9 +2,9 @@ import React, {useState, useEffect, useRef} from 'react';
 import {Dimensions, View, StyleSheet} from 'react-native';
 import {WebView} from 'react-native-webview';
 function PDFReader({route, navigation}) {
-  const url = route.params.resource[0];
+  const url = 'https://' + route.params.resource[0];
   useEffect(() => {
-    console.log('PDF Reader ref ------');
+    console.log('------- WebView Component ------');
   });
 
   return (
