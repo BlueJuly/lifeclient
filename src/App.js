@@ -7,11 +7,12 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Login from './views/Login';
-import Homepage from './views/Homepage';
-import VideoPlayer from './views/VideoPlayer';
-import PDFReader from './views/PDFReader';
-import WebView from './views/WebView';
+import Login from './views/Login/Login';
+import Homepage from './views/Tiles/Homepage';
+import VideoPlayer from './views/Tiles/VideoPlayer';
+import PDFReader from './views/Tiles/PDFReader';
+import WebView from './views/Tiles/WebView';
+
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default function App() {

@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import Video from 'react-native-video';
 import {connect} from 'react-redux';
-import {login} from '../redux/actions';
+import {login} from '../../redux/actions';
 function VideoPlayer({route, navigation}) {
   const [username, setUsername] = useState('123');
   const player = useRef(null);

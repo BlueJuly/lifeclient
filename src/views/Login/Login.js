@@ -13,9 +13,9 @@ import {
   Keyboard,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {login} from '../redux/actions';
+import {login} from '../../redux/actions';
 //import {View} from 'native-base';
-const LOGO_PIC = require('../assets/images/logo_1024px.png');
+const LOGO_PIC = require('../../assets/images/logo_1024px.png');
 function Login(props) {
   const [username, setUsername] = useState('123');
   const [password, setPassword] = useState('456');
