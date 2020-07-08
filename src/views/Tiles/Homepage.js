@@ -18,6 +18,7 @@ import {
   Right,
   Tab,
   Tabs,
+  ScrollableTab,
 } from 'native-base';
 import {connect} from 'react-redux';
 import {updateDeviceInfo} from '../../redux/actions';
@@ -38,13 +39,28 @@ function Homepage(props) {
   return (
     <Container>
       <Header />
-      <Tabs>
+      <Tabs renderTabBar={() => <ScrollableTab />}>
         <Tab heading="All Tiles">
           <TilesTab tiles={props.tiles} navigation={props.navigation} />
         </Tab>
+        <Tab heading="Image Tiles">
+          <View>
+            <Text>Image Tiles</Text>
+          </View>
+        </Tab>
         <Tab heading="Video Tiles">
           <View>
-            <Text>Hello</Text>
+            <Text>Video Tiles</Text>
+          </View>
+        </Tab>
+        <Tab heading="Document Tiles">
+          <View>
+            <Text>Document Tiles</Text>
+          </View>
+        </Tab>
+        <Tab heading="Website Tiles">
+          <View>
+            <Text>Website Tiles</Text>
           </View>
         </Tab>
       </Tabs>
