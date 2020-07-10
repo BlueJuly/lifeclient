@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   Container,
   Header,
@@ -8,7 +8,6 @@ import {
   Footer,
   FooterTab,
   Button,
-  Icon,
   Text,
   Badge,
   Card,
@@ -45,14 +44,12 @@ function Homepage(props) {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
           if (route.name === 'Tiles') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+            iconName = focused ? 'account' : 'account-outline';
           }
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={30} color={color} />;
         },
       })}
       tabBarOptions={{
