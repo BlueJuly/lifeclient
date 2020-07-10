@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   Container,
   Header,
@@ -16,15 +17,17 @@ import {
   Left,
   Body,
   Right,
-  Tab,
   Tabs,
   ScrollableTab,
 } from 'native-base';
 import {connect} from 'react-redux';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
 import {updateDeviceInfo} from '../../redux/actions';
 import {getUserTiles} from '../../redux/actions/tilesAction';
-import TilesTab from './TilesTab';
-
+import TilesScreen from './Tiles';
+import SettingsScreen from '../Settings/Settings';
+const Tab = createBottomTabNavigator();
 function Homepage(props) {
   console.log('----reducers in homepage is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
@@ -37,74 +40,28 @@ function Homepage(props) {
     console.log('----reducers in homepage is-----', props);
   }, [activeMenuButton]);
   return (
-    <Container>
-      <Header />
-      <Tabs renderTabBar={() => <ScrollableTab />}>
-        <Tab heading="All Tiles">
-          <TilesTab tiles={props.tiles} navigation={props.navigation} />
-        </Tab>
-        <Tab heading="Image Tiles">
-          <View>
-            <Text>Image Tiles</Text>
-          </View>
-        </Tab>
-        <Tab heading="Video Tiles">
-          <View>
-            <Text>Video Tiles</Text>
-          </View>
-        </Tab>
-        <Tab heading="Document Tiles">
-          <View>
-            <Text>Document Tiles</Text>
-          </View>
-        </Tab>
-        <Tab heading="Website Tiles">
-          <View>
-            <Text>Website Tiles</Text>
-          </View>
-        </Tab>
-      </Tabs>
-      <Footer>
-        <FooterTab>
-          <Button
-            active={activeMenuButton === 1}
-            onPress={() => setActiveMenuButton(1)}
-            badge
-            vertical>
-            <Badge success>
-              <Text>2</Text>
-            </Badge>
-            <Icon name="home" />
-            <Text>Pages</Text>
-          </Button>
-          <Button
-            active={activeMenuButton === 2}
-            onPress={() => setActiveMenuButton(2)}
-            vertical>
-            <Icon name="calendar" />
-            <Text>Schedules</Text>
-          </Button>
-          <Button
-            active={activeMenuButton === 3}
-            onPress={() => setActiveMenuButton(3)}
-            vertical>
-            <Icon name="person" />
-            <Text>Contact</Text>
-          </Button>
-          <Button
-            active={activeMenuButton === 4}
-            onPress={() => setActiveMenuButton(4)}
-            badge
-            vertical>
-            <Badge>
-              <Text>51</Text>
-            </Badge>
-            <Icon type="FontAwesome5" name="users-cog" />
-            <Text>Manage</Text>
-          </Button>
-        </FooterTab>
-      </Footer>
-    </Container>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+          if (route.name === 'Tiles') {
+            iconName = focused
+              ? 'ios-information-circle'
+              : 'ios-information-circle-outline';
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}>
+      <Tab.Screen name="Tiles" component={TilesScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
   );
 }
 
