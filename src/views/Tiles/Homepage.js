@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   Container,
   Header,
@@ -25,6 +26,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {updateDeviceInfo} from '../../redux/actions';
 import {getUserTiles} from '../../redux/actions/tilesAction';
 import TilesScreen from './Tiles';
+import ContactsScreen from '../Contacts/Contacts';
+import SchedulesScreen from '../Schedules/Schedules';
 import SettingsScreen from '../Settings/Settings';
 const Tab = createBottomTabNavigator();
 function Homepage(props) {
@@ -43,20 +46,33 @@ function Homepage(props) {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-          if (route.name === 'Tiles') {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'account' : 'account-outline';
+          switch (route.name) {
+            case 'Tiles':
+              iconName = focused ? 'home' : 'home-outline';
+              return <Icon name={iconName} size={30} color={color} />;
+            case 'Contacts':
+              iconName = focused ? 'message' : 'message-outline';
+              return <Icon name={iconName} size={30} color={color} />;
+            case 'Schedules':
+              iconName = focused ? 'calendar-month' : 'calendar-month-outline';
+              return <Icon name={iconName} size={30} color={color} />;
+            case 'Settings':
+              iconName = focused ? 'account' : 'account-outline';
+              return <Icon name={iconName} size={30} color={color} />;
           }
           // You can return any component that you like here!
-          return <Icon name={iconName} size={30} color={color} />;
         },
       })}
       tabBarOptions={{
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
+        labelStyle: {
+          fontSize: 13,
+        }
       }}>
       <Tab.Screen name="Tiles" component={TilesScreen} />
+      <Tab.Screen name="Contacts" component={ContactsScreen} />
+      <Tab.Screen name="Schedules" component={SchedulesScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
