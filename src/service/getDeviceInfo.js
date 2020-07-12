@@ -9,6 +9,7 @@ import {
   getUsedMemory,
   getDeviceId,
 } from 'react-native-device-info';
+import messaging, { AuthorizationStatus } from '@react-native-firebase/messaging';
 export const getMobileDeviceInfo = async function() {
   let mobileDeviceInfo = {};
   try {
@@ -21,6 +22,14 @@ export const getMobileDeviceInfo = async function() {
     mobileDeviceInfo.batteryLevel = await getBatteryLevel();
     mobileDeviceInfo.totalMemory = await getTotalMemory();
     mobileDeviceInfo.usedMemory = await getUsedMemory();
+    const authStatus = await messaging().requestPermission();
+    // const enabled =
+    //   authStatus === AuthorizationStatus.AUTHORIZED || authStatus === AuthorizationStatus.PROVISIONAL;
+
+    // if (enabled) {
+    //   console.log('Authorization status:', authStatus);
+    // }
+    mobileDeviceInfo.token = await messaging().getToken();
     return mobileDeviceInfo;
   } catch (error) {
     return error;
