@@ -23,7 +23,7 @@ import {
 import {connect} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {updateDeviceInfo} from '../../redux/actions';
+import {updateDeviceInfo, connectSocketIO} from '../../redux/actions';
 import {getUserTiles} from '../../redux/actions/tilesAction';
 import TilesScreen from './Tiles';
 import ContactsScreen from '../Contacts/Contacts';
@@ -37,6 +37,7 @@ function Homepage(props) {
   useEffect(() => {
     console.log('----reducers in homepage is-----', props);
     props.updateDeviceInfo();
+    props.connectSocketIO();
     props.getUserTiles();
     setAllTiles(props.tiles);
     console.log('----reducers in homepage is-----', props);
@@ -87,6 +88,7 @@ const mapStateToProps = ({userReducer, tilesReducer}) => {
 const mapDispatchToProps = {
   updateDeviceInfo,
   getUserTiles,
+  connectSocketIO,
 };
 
 export default connect(

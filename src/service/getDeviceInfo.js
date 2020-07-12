@@ -10,6 +10,7 @@ import {
   getDeviceId,
 } from 'react-native-device-info';
 import messaging, { AuthorizationStatus } from '@react-native-firebase/messaging';
+import socketIO from './socketIO';
 export const getMobileDeviceInfo = async function() {
   let mobileDeviceInfo = {};
   try {
