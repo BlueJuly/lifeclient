@@ -15,8 +15,6 @@ import {
   Dimensions,
 } from 'react-native';
 import Draggable from 'react-native-draggable';
-import messaging, { AuthorizationStatus } from '@react-native-firebase/messaging';
-import io from 'socket.io-client';
 import InCallManager from 'react-native-incall-manager';
 import {Container, Icon} from 'native-base';
 
@@ -30,7 +28,7 @@ import {
   getUserMedia,
   mediaDevices,
 } from 'react-native-webrtc';
-
+import {socketService} from '../../service/socketIO';
 const configuration = {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -260,29 +258,13 @@ class RCTWebRTCDemo extends Component {
     if (Platform.OS === 'ios') {
       deviceType = 'iOS';
     }
-    socket = io.connect('https://lifeserver.azurewebsites.net', {
-      query: {device: deviceType},
-      transports: ['websocket'],
-    });
+    socket = socketService();
     setTimeout(async () => {
       const permission = await InCallManager.checkRecordPermission();
       console.log(permission);
       InCallManager.start({ media: 'video' });
       //InCallManager.setForceSpeakerphoneOn(true);
     }, 500);
-    const authStatus = await messaging().requestPermission();
-    // const enabled =
-    //   authStatus === AuthorizationStatus.AUTHORIZED || authStatus === AuthorizationStatus.PROVISIONAL;
-
-    // if (enabled) {
-    //   console.log('Authorization status:', authStatus);
-    // }
-    messaging()
-    .getToken()
-    .then(token => {
-      console.log('++++token is +++');
-      console.log(token);
-    });
     socket.on('exchange', function(data){
       exchange(data);
     });

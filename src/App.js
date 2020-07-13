@@ -12,7 +12,7 @@ import Homepage from './views/Tiles/Homepage';
 import VideoPlayer from './views/Tiles/VideoPlayer';
 import PDFReader from './views/Tiles/PDFReader';
 import WebView from './views/Tiles/WebView';
-
+import WebRTCCall from './views/Contacts/WebRTCCall';
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default function App() {
@@ -78,6 +78,11 @@ export default function App() {
             <Stack.Screen
               name="WebView"
               component={WebView}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="WebRTCCall"
+              component={WebRTCCall}
               options={{headerShown: false}}
             />
           </Stack.Navigator>

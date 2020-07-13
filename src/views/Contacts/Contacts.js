@@ -21,7 +21,7 @@ function Contacts(props) {
   console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [allTiles, setAllTiles] = useState([]);
-  const {contacts} = props;
+  const {contacts, navigation} = props;
   useEffect(() => {
     console.log('----reducers in Contact 2 is-----', props);
     //props.updateDeviceInfo();
@@ -39,8 +39,9 @@ function Contacts(props) {
               <ListItem
                 avatar
                 onPress={() => {
-                  console.log('hi');
-                }} key={index}>
+                  navigation.navigate('WebRTCCall', contact);
+                }}
+                key={index}>
                 <Left>
                   <Thumbnail source={{uri: contact.profileImage.blobUrl}} />
                 </Left>
