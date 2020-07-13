@@ -4,60 +4,75 @@ import {
   Container,
   Header,
   Content,
-  Footer,
-  FooterTab,
-  Button,
-  Icon,
   Text,
-  Badge,
-  Card,
-  CardItem,
   Thumbnail,
   Left,
   Body,
   Right,
   Tab,
   Tabs,
-  ScrollableTab,
+  List,
+  ListItem,
 } from 'native-base';
 import {connect} from 'react-redux';
-import {updateDeviceInfo} from '../../redux/actions';
-import {getUserTiles} from '../../redux/actions/tilesAction';
+import {getUserContacts} from '../../redux/actions/contactsAction';
 
-
-function Settings(props) {
-  console.log('----reducers in Tiles is-----', props);
+function Contacts(props) {
+  console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [allTiles, setAllTiles] = useState([]);
+  const {contacts} = props;
   useEffect(() => {
-    console.log('----reducers in Tiles is-----', props);
-    props.updateDeviceInfo();
-    props.getUserTiles();
-    setAllTiles(props.tiles);
-    console.log('----reducers in Tiles is-----', props);
+    console.log('----reducers in Contact 2 is-----', props);
+    //props.updateDeviceInfo();
+    props.getUserContacts();
+    //setAllTiles(props.tiles);
+    console.log('----reducers in Contact 3 is-----', props);
   }, [activeMenuButton]);
   return (
     <Container>
       <Header />
       <Content>
-        <Text>Contacts</Text>
+        <List>
+          {contacts.map((contact, index) => {
+            return (
+              <ListItem
+                avatar
+                onPress={() => {
+                  console.log('hi');
+                }} key={index}>
+                <Left>
+                  <Thumbnail source={{uri: contact.profileImage.blobUrl}} />
+                </Left>
+                <Body>
+                  <Text>{contact.username}</Text>
+                  <Text note>
+                    Doing what you like will always keep you happy . .
+                  </Text>
+                </Body>
+                <Right>
+                  <Text note>3:43 pm</Text>
+                </Right>
+              </ListItem>
+            );
+          })}
+        </List>
       </Content>
     </Container>
   );
 }
 
-const mapStateToProps = ({userReducer, tilesReducer}) => {
+const mapStateToProps = ({userReducer, contactsReducer}) => {
   //console.log('----user in Tiles is-----', userReducer);
-  const {tiles} = tilesReducer;
-  return {tiles};
+  const {contacts} = contactsReducer;
+  return {contacts};
 };
 
 const mapDispatchToProps = {
-  updateDeviceInfo,
-  getUserTiles,
+  getUserContacts,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Settings);
+)(Contacts);

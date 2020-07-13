@@ -59,3 +59,22 @@ export const getUserTilesRequest = async function(user) {
     return error;
   }
 };
+
+export const getUserContactsRequest = async function(user) {
+  try {
+    let res = await fetch(GetUserTilesAPI + user._id + '/contacts', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    //console.log('----this is res from update device info request1----', user);
+    const contacts = await res.json();
+
+    //console.log('----this is res from update device info request2----', resJson);
+    return contacts;
+  } catch (error) {
+    return error;
+  }
+};
