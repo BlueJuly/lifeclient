@@ -10,9 +10,9 @@ export const getUserContacts = () => async (dispatch, getState) => {
   try {
     let {user} = getState().userReducer;
     console.log('----getting into contacts action----');
-    let tiles = await getUserContactsRequest(user);
-    console.log('----this is contacts  from action----', tiles);
-    dispatch({type: FETCH_CONTACTS_SUCCESS, payload: tiles});
+    let contacts = await getUserContactsRequest(user);
+    console.log('----this is contacts  from action----', contacts);
+    dispatch({type: FETCH_CONTACTS_SUCCESS, payload: contacts});
   } catch (err) {
     console.log('----error in contacts action----', err);
     dispatch({

@@ -1,14 +1,16 @@
 import io from 'socket.io-client';
+let socket;
 export const socketService = function socketService(userId, token) {
   //console.log('~~~~~~~~~socket Service', userId);
-  let socket;
   if (!socket) {
-    socket = io.connect('http://192.168.0.13:4001', {
+    socket = io.connect('http://192.168.0.12:4001', {
       transports: ['websocket'],
       query: {
         userId: userId,
         //token: token,
       },
+      secure: true,
+      rejectUnauthorized: false,
     });
   }
   return socket;

@@ -48,7 +48,7 @@ function Contacts(props) {
                 <Body>
                   <Text>{contact.username}</Text>
                   <Text note>
-                    Doing what you like will always keep you happy . .
+                    {contact.mobileDevice&&contact.mobileDevice.socketId ? contact.mobileDevice.socketId : 'offline'}
                   </Text>
                 </Body>
                 <Right>

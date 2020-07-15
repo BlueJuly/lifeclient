@@ -1,4 +1,4 @@
-const EndPoint = 'http://192.168.0.13:4040';
+const EndPoint = 'http://192.168.0.12:4040';
 const LoginAPI = EndPoint + '/api/auth/login';
 const UpdateUserInfoAPI = EndPoint + '/api/users/';
 const GetUserTilesAPI = EndPoint + '/api/users/';
@@ -25,7 +25,7 @@ export const loginRequest = async function(username, password) {
 
 export const updateMobileDeviceInfoRequest = async function(user) {
   try {
-    let res = await fetch(UpdateUserInfoAPI, {
+    let res = await fetch(UpdateUserInfoAPI + user._id, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
