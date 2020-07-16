@@ -32,18 +32,12 @@ import SchedulesScreen from '../Schedules/Schedules';
 import SettingsScreen from '../Settings/Settings';
 const Tab = createBottomTabNavigator();
 function Homepage(props) {
-  console.log('----reducers in homepage1 is-----', props);
-  const [activeMenuButton, setActiveMenuButton] = useState(1);
-  const [allTiles, setAllTiles] = useState([]);
+  const {navigation} = props;
+  const [activeMenuButton, setActiveMenuButton] = useState('Tiles');
   useEffect(() => {
-    console.log('----reducers in homepage2 is-----', props);
     props.updateDeviceInfo();
-    props.connectSocketIO();
-    props.getUserContacts();
     props.getUserTiles();
-    //setAllTiles(props.tiles);
-    console.log('----reducers in homepage3 is-----', props);
-  });
+  }, [activeMenuButton]);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -52,19 +46,15 @@ function Homepage(props) {
           switch (route.name) {
             case 'Tiles':
               iconName = focused ? 'home' : 'home-outline';
-              setActiveMenuButton(1);
               return <Icon name={iconName} size={30} color={color} />;
             case 'Contacts':
               iconName = focused ? 'message' : 'message-outline';
-              setActiveMenuButton(2);
               return <Icon name={iconName} size={30} color={color} />;
             case 'Schedules':
               iconName = focused ? 'calendar-month' : 'calendar-month-outline';
-              setActiveMenuButton(3);
               return <Icon name={iconName} size={30} color={color} />;
             case 'Settings':
               iconName = focused ? 'account' : 'account-outline';
-              setActiveMenuButton(4);
               return <Icon name={iconName} size={30} color={color} />;
           }
           // You can return any component that you like here!
@@ -75,29 +65,68 @@ function Homepage(props) {
         inactiveTintColor: 'gray',
         labelStyle: {
           fontSize: 13,
-        }
+        },
       }}>
-      <Tab.Screen name="Tiles" component={TilesScreen} />
-      <Tab.Screen name="Contacts" component={ContactsScreen} />
-      <Tab.Screen name="Schedules" component={SchedulesScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Tiles"
+        component={TilesScreen}
+        listeners={({navigation, route}) => ({
+          tabPress: e => {
+            // Prevent default action
+            e.preventDefault();
+            setActiveMenuButton(1);
+            // Do something with the `navigation` object
+            navigation.navigate('Tiles');
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Contacts"
+        component={ContactsScreen}
+        listeners={({navigation, route}) => ({
+          tabPress: e => {
+            e.preventDefault();
+            setActiveMenuButton(2);
+            navigation.navigate('Contacts');
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Schedules"
+        component={SchedulesScreen}
+        listeners={({navigation, route}) => ({
+          tabPress: e => {
+            e.preventDefault();
+            setActiveMenuButton(3);
+            navigation.navigate('Schedules');
+          },
+        })}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        listeners={({navigation, route}) => ({
+          tabPress: e => {
+            e.preventDefault();
+            setActiveMenuButton(4);
+            navigation.navigate('Settings');
+          },
+        })}
+      />
     </Tab.Navigator>
   );
 }
-
 const mapStateToProps = ({userReducer, tilesReducer}) => {
   //console.log('----user in homepage is-----', userReducer);
   const {tiles} = tilesReducer;
   return {tiles};
 };
-
 const mapDispatchToProps = {
   updateDeviceInfo,
   getUserTiles,
   connectSocketIO,
   getUserContacts,
 };
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

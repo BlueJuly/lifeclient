@@ -20,7 +20,6 @@ import {getUserContacts} from '../../redux/actions/contactsAction';
 function Contacts(props) {
   console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
-  const [allTiles, setAllTiles] = useState([]);
   const {contacts, navigation} = props;
   useEffect(() => {
     console.log('----reducers in Contact 2 is-----', props);
@@ -64,7 +63,6 @@ function Contacts(props) {
 }
 
 const mapStateToProps = ({userReducer, contactsReducer}) => {
-  //console.log('----user in Tiles is-----', userReducer);
   const {contacts} = contactsReducer;
   return {contacts};
 };

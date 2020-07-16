@@ -43,6 +43,7 @@ function Login(props) {
               />
               <TextInput
                 placeholder="Password"
+                secureTextEntry={true}
                 onChangeText={text => setPassword(text)}
                 style={styles.textInput}
               />
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     borderBottomWidth: 1,
     marginBottom: 36,
+    color: '#000000',
   },
   btnContainer: {
     backgroundColor: 'white',

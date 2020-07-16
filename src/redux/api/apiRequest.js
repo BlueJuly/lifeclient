@@ -15,11 +15,10 @@ export const loginRequest = async function(username, password) {
         password: password,
       }),
     });
-    console.log('----this is login request----', res);
     let user = await res.json();
     return user;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -38,7 +37,7 @@ export const updateMobileDeviceInfoRequest = async function(user) {
     //console.log('----this is res from update device info request2----', resJson);
     return resJson;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 export const getUserTilesRequest = async function(user) {
@@ -56,7 +55,7 @@ export const getUserTilesRequest = async function(user) {
     //console.log('----this is res from update device info request2----', resJson);
     return tiles;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -71,10 +70,8 @@ export const getUserContactsRequest = async function(user) {
     });
     //console.log('----this is res from update device info request1----', user);
     const contacts = await res.json();
-
-    //console.log('----this is res from update device info request2----', resJson);
     return contacts;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
