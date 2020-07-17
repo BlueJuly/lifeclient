@@ -5,7 +5,7 @@ export const getUserTiles = () => async (dispatch, getState) => {
   dispatch({type: FETCHING_TILES});
   try {
     let {user} = getState().userReducer;
-    console.log('----getting into tiles action----');
+   // console.log('----getting into tiles action----');
     let tiles = await getUserTilesRequest(user);
     console.log('----this is tiles  from action----', tiles);
     dispatch({type: FETCH_TILES_SUCCESS, payload: tiles});

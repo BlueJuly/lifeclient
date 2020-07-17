@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -13,6 +13,7 @@ import InCallManager from 'react-native-incall-manager';
 import {Container, Icon} from 'native-base';
 import {connect} from 'react-redux';
 import {getUserContacts} from '../../redux/actions/contactsAction';
+import {store} from '../../redux/store/store';
 import {
   RTCPeerConnection,
   RTCMediaStream,
@@ -23,11 +24,21 @@ import {
   getUserMedia,
   mediaDevices,
 } from 'react-native-webrtc';
+import {
+  UPDATING_WEBRTCREDUCER,
+  UPDATE_WEBRTC_ISFRONT,
+  UPDATE_WEBRTC_REMOTELIST,
+  UPDATE_WEBRTC_SELFVIEWSRC,
+  UPDATE_WEBRTC_LOCALSTREAM,
+  UPDATE_WEBRTC_FAILED,
+} from '../../redux/type';
 import {socketService} from '../../service/socketIO';
 const configuration = {iceServers: [{url: 'stun:stun.l.google.com:19302'}]};
 const pcPeers = {};
 let localStreamTemp1;
-
+function testAction (){
+  store.dispatch({type: UPDATE_WEBRTC_SELFVIEWSRC, payload: 'test123'});
+}
 function WebRTCCall(props) {
   const contact = props.route.params;
   const {user} = props;
@@ -301,7 +312,7 @@ function WebRTCCall(props) {
         <Icon name="home" />
         <TouchableOpacity
             style={styles.startCallButton}
-            onPress={prepareCall}>
+            onPress={testAction}>
             <Text style={styles.startCallText}>Start</Text>
           </TouchableOpacity>
       </View>
@@ -382,11 +393,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({userReducer, contactsReducer}) => {
-  //console.log('----user in Tiles is-----', userReducer);
+const mapStateToProps = ({userReducer, contactsReducer, webRTCReducer}) => {
+  console.log('----webRTCReducer in webRTCView is-----', webRTCReducer);
   const {contacts} = contactsReducer;
   const {user} = userReducer;
-  return {contacts, user};
+  const {isFront, remoteList, selfViewSrc, localStream} = webRTCReducer;
+  return {contacts, user, isFront, remoteList, selfViewSrc, localStream};
 };
 
 const mapDispatchToProps = {

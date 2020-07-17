@@ -33,10 +33,16 @@ import SettingsScreen from '../Settings/Settings';
 const Tab = createBottomTabNavigator();
 function Homepage(props) {
   const {navigation} = props;
-  const [activeMenuButton, setActiveMenuButton] = useState('Tiles');
+  const [activeMenuButton, setActiveMenuButton] = useState(1);
   useEffect(() => {
-    props.updateDeviceInfo();
-    props.getUserTiles();
+    if (activeMenuButton === 1) {
+      props.updateDeviceInfo();
+      props.getUserTiles();
+      props.connectSocketIO();
+    }
+    if (activeMenuButton === 2) {
+      props.getUserContacts();
+    }
   }, [activeMenuButton]);
   return (
     <Tab.Navigator

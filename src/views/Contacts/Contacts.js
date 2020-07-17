@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {
   Container,
@@ -20,6 +20,7 @@ import {getUserContacts} from '../../redux/actions/contactsAction';
 function Contacts(props) {
   console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
+  const [allTiles, setAllTiles] = useState([]);
   const {contacts, navigation} = props;
   useEffect(() => {
     console.log('----reducers in Contact 2 is-----', props);
@@ -47,7 +48,12 @@ function Contacts(props) {
                 <Body>
                   <Text>{contact.username}</Text>
                   <Text note>
-                    {contact.mobileDevice&&contact.mobileDevice.socketId ? contact.mobileDevice.socketId : 'offline'}
+                  </Text>
+                  <Text note>
+                  {contact.mobileDevice&&contact.mobileDevice.socketId ? contact.mobileDevice.socketId : 'offline'}
+
+                  </Text>
+                  <Text note>
                   </Text>
                 </Body>
                 <Right>

@@ -12,7 +12,12 @@ const persistConfig = {
   // Storage Method (React Native)
   storage: AsyncStorage,
   // Whitelist (Save Specific Reducers)
-  whitelist: ['userReducer', 'tilesReducer', 'contactsReducer'],
+  whitelist: [
+    'userReducer',
+    'tilesReducer',
+    'contactsReducer',
+    'webRTCReducer',
+  ],
   // Blacklist (Don't Save Specific Reducers)
   blacklist: [],
 };

@@ -1,4 +1,4 @@
-const EndPoint = 'http://192.168.0.12:4040';
+const EndPoint = 'http://192.168.0.19:4040';
 const LoginAPI = EndPoint + '/api/auth/login';
 const UpdateUserInfoAPI = EndPoint + '/api/users/';
 const GetUserTilesAPI = EndPoint + '/api/users/';
