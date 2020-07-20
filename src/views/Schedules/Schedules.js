@@ -4,15 +4,10 @@ import {
   Container,
   Header,
   Content,
-  Footer,
-  FooterTab,
+  Title,
   Button,
   Icon,
   Text,
-  Badge,
-  Card,
-  CardItem,
-  Thumbnail,
   Left,
   Body,
   Right,
@@ -38,7 +33,20 @@ function Settings(props) {
   }, [activeMenuButton]);
   return (
     <Container>
-      <Header />
+      <Header>
+        <Left />
+        <Body>
+          <Title>Schedules</Title>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name="search" />
+          </Button>
+          <Button transparent>
+            <Icon name="add" />
+          </Button>
+        </Right>
+      </Header>
       <Content>
         <Text>Schedules</Text>
       </Content>

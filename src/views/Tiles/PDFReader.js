@@ -7,7 +7,7 @@ function PDFReader({route, navigation}) {
     cache: true,
   };
   useEffect(() => {
-    console.log('------- WebView Component ------');
+    console.log('------- PDF Component ------');
   });
 
   return (

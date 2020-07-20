@@ -4,8 +4,7 @@ import {
   Container,
   Header,
   Content,
-  Footer,
-  FooterTab,
+  Title,
   Button,
   Icon,
   Text,
@@ -38,7 +37,13 @@ function Settings(props) {
   }, [activeMenuButton]);
   return (
     <Container>
-      <Header />
+      <Header>
+        <Left />
+        <Body>
+          <Title>Settings</Title>
+        </Body>
+        <Right />
+      </Header>
       <Content>
         <Text>Settings</Text>
       </Content>

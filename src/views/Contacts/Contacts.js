@@ -9,8 +9,9 @@ import {
   Left,
   Body,
   Right,
-  Tab,
-  Tabs,
+  Title,
+  Button,
+  Icon,
   List,
   ListItem,
 } from 'native-base';
@@ -30,7 +31,20 @@ function Contacts(props) {
   }, [activeMenuButton]);
   return (
     <Container>
-      <Header />
+      <Header>
+        <Left />
+        <Body>
+          <Title>Contacts</Title>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name="search" />
+          </Button>
+          <Button transparent>
+            <Icon name="add" />
+          </Button>
+        </Right>
+      </Header>
       <Content>
         <List>
           {contacts.map((contact, index) => {

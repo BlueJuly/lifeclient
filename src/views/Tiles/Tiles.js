@@ -4,12 +4,10 @@ import {
   Container,
   Header,
   Content,
-  Footer,
-  FooterTab,
   Button,
   Icon,
   Text,
-  Badge,
+  Title,
   Card,
   CardItem,
   Thumbnail,
@@ -38,7 +36,20 @@ function Tiles(props) {
   }, [activeMenuButton]);
   return (
     <Container>
-      <Header />
+      <Header>
+        <Left />
+        <Body>
+          <Title>Tiles</Title>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name="search" />
+          </Button>
+          <Button transparent>
+            <Icon name="add" />
+          </Button>
+        </Right>
+      </Header>
       <Tabs renderTabBar={() => <ScrollableTab />}>
         <Tab heading="All Tiles">
           <TilesTab tiles={props.tiles} navigation={props.navigation} />
