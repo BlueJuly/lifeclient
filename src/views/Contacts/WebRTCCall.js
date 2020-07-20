@@ -38,7 +38,7 @@ import {socketService} from '../../service/socketIO';
 import userReducer from '../../redux/reducers/userReducer';
 const configuration = {iceServers: [{url: 'stun:stun.l.google.com:19302'}]};
 const socket = socketService(store.getState().userReducer.user._id);
-const pcPeers = {};
+let pcPeers = {socketId: undefined, pc: undefined};
 
 socket.on('exchange', function(data) {
   console.log('---exchange---', data);
@@ -108,7 +108,8 @@ function createPC(socketId, isOffer) {
   console.log('-----pcPeers in createPC 1------', pcPeers);
   const pc = new RTCPeerConnection(configuration);
   const localStream = store.getState().webRTCReducer.localStream;
-  pcPeers[socketId] = pc;
+  pcPeers.socketId = socketId;
+  pcPeers.pc = pc;
   pc.onicecandidate = function(event) {
     //console.log('onicecandidate', event.candidate);
     if (event.candidate) {
@@ -195,8 +196,8 @@ function createPC(socketId, isOffer) {
 async function exchange(data) {
   const fromId = data.from;
   let pc;
-  if (fromId in pcPeers) {
-    pc = pcPeers[fromId];
+  if (pcPeers.socketId === fromId) {
+    pc = pcPeers.pc;
   } else {
     pc = createPC(fromId, false);
   }
@@ -223,11 +224,11 @@ async function exchange(data) {
 
 function leave(socketId) {
   console.log('leave', socketId);
-  const pc = pcPeers[socketId];
-  //const viewIndex = pc.viewIndex;
-  pc.close();
-  delete pcPeers[socketId];
-
+  if (pcPeers.socketId === socketId && pcPeers.pc) {
+    const pc = pcPeers.pc;
+    pc.close();
+    //pcPeers = {};
+  }
   const remoteList = store.getState().webRTCReducer.remoteList;
   delete remoteList[socketId];
   updateRemoteList(remoteList);
@@ -239,7 +240,7 @@ function logError(error) {
 }
 
 function getStats() {
-  const pc = pcPeers[Object.keys(pcPeers)[0]];
+  const pc = pcPeers.pc;
   if (
     pc.getRemoteStreams()[0] &&
     pc.getRemoteStreams()[0].getAudioTracks()[0]
@@ -267,13 +268,6 @@ function WebRTCCall(props) {
     callStatus,
     navigation,
   } = props;
-  console.log('----props in WebRTCCall ------', props);
-  //const [isFront, setIsFront] = useState(true);
-  //const [selfViewSrc, setSelfViewSrc] = useState(undefined);
-  //const [remoteList, setRemoteList] = useState({});
-  //const [localStream, setLocalStream] = useState(undefined);
-  //const [socket, setSocket] = useState(undefined);
-
   useEffect(() => {
     console.log('----props in WebRTCCall 2------', props);
     (async () => {
@@ -291,6 +285,11 @@ function WebRTCCall(props) {
   }, []);
   function endCall() {
     resetWebRTCReducer();
+    if (pcPeers.pc) {
+      const pc = pcPeers.pc;
+      pc.close();
+      pcPeers = {socketId: undefined, pc: undefined};
+    }
     navigation.navigate('Contacts');
   }
   function prepareCall() {
@@ -307,8 +306,6 @@ function WebRTCCall(props) {
     console.log(this);
     localStream.getVideoTracks().forEach(track => track._switchCamera());
   };
-  // console.log('&&&&&&&&&&&&isFront', isFront);
-  // console.log('&&&&&&&&&&&&remoteList', remoteList);
   return (
     <View style={styles.container}>
       <RTCView
