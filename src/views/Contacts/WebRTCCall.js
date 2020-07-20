@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import Draggable from 'react-native-draggable';
 import InCallManager from 'react-native-incall-manager';
-import {Container, Icon} from 'native-base';
+import {Container} from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {connect} from 'react-redux';
 import {getUserContacts} from '../../redux/actions/contactsAction';
 import {store} from '../../redux/store/store';
@@ -312,23 +313,22 @@ function WebRTCCall(props) {
         style={styles.selfView}
       />
       <View style={styles.reverseCameraView}>
-        <Icon name="home" />
         <TouchableOpacity
           style={styles.reverseCameraButton}
           onPress={_switchVideoType}>
-          <Text style={styles.reverseCameraText}>Switch Camera</Text>
+          <Icon name="camera-party-mode" size={60} color="white"/>
         </TouchableOpacity>
       </View>
       <View style={styles.endCallView}>
         {/* <Icon name="home" /> */}
         <TouchableOpacity style={styles.endCallButton} onPress={endCall}>
-          <Text style={styles.endCallText}>End</Text>
+          <Icon name="phone-off" size={60} color="#b71c1c"/>
         </TouchableOpacity>
       </View>
       <View style={styles.startCallView}>
         {/* <Icon name="home" /> */}
         <TouchableOpacity style={styles.startCallButton} onPress={prepareCall}>
-          <Text style={styles.startCallText}>Start</Text>
+          <Icon name="phone-outgoing" size={60} color="#388E3C"/>
         </TouchableOpacity>
       </View>
       {remoteViewSrc && (
@@ -367,13 +367,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 80,
     height: 80,
-    left: '10%',
+    left: '5%',
     right: '75%',
     bottom: 80,
     backgroundColor: 'transparent',
     borderRadius: 40,
-    borderColor: '#388e3c',
-    borderWidth: 3,
+    borderColor: 'white',
+    borderWidth: 1,
   },
   reverseCameraButton: {
     flex: 1,
@@ -394,8 +394,8 @@ const styles = StyleSheet.create({
     bottom: 80,
     backgroundColor: 'transparent',
     borderRadius: 40,
-    borderColor: '#388e3c',
-    borderWidth: 3,
+    borderColor: 'white',
+    borderWidth:1,
   },
   startCallButton: {
     flex: 1,
@@ -416,8 +416,8 @@ const styles = StyleSheet.create({
     bottom: 80,
     backgroundColor: 'transparent',
     borderRadius: 40,
-    borderColor: '#388e3c',
-    borderWidth: 3,
+    borderColor: 'white',
+    borderWidth: 1,
   },
   endCallButton: {
     flex: 1,
