@@ -2,6 +2,8 @@ import {
   UPDATING_WEBRTCREDUCER,
   UPDATE_WEBRTC_ISFRONT,
   UPDATE_WEBRTC_REMOTELIST,
+  UPDATE_WEBRTC_REMOTESOCKETID,
+  UPDATE_WEBRTC_REMOTEVIEWSRC,
   UPDATE_WEBRTC_SELFVIEWSRC,
   UPDATE_WEBRTC_LOCALSTREAM,
   UPDATE_WEBRTC_CALLSTATUS,
@@ -13,6 +15,8 @@ const initialState = {
   updating: false,
   isFront: true,
   remoteList: {},
+  remoteSocketId: undefined,
+  remoteViewSrc: undefined,
   selfViewSrc: undefined,
   localStream: undefined,
   callStatus: '',
@@ -39,6 +43,14 @@ export default (state = initialState, action) => {
     case UPDATE_WEBRTC_REMOTELIST: {
       const remoteList = action.payload;
       return {...state, remoteList};
+    }
+    case UPDATE_WEBRTC_REMOTESOCKETID: {
+      const remoteSocketId = action.payload;
+      return {...state, remoteSocketId};
+    }
+    case UPDATE_WEBRTC_REMOTEVIEWSRC: {
+      const remoteViewSrc = action.payload;
+      return {...state, remoteViewSrc};
     }
     case UPDATE_WEBRTC_SELFVIEWSRC: {
       const selfViewSrc = action.payload;

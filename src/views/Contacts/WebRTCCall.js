@@ -28,6 +28,8 @@ import {
   UPDATING_WEBRTCREDUCER,
   UPDATE_WEBRTC_ISFRONT,
   UPDATE_WEBRTC_REMOTELIST,
+  UPDATE_WEBRTC_REMOTESOCKETID,
+  UPDATE_WEBRTC_REMOTEVIEWSRC,
   UPDATE_WEBRTC_SELFVIEWSRC,
   UPDATE_WEBRTC_LOCALSTREAM,
   UPDATE_WEBRTC_FAILED,
@@ -69,6 +71,12 @@ function updateIsFront(isFront) {
 }
 function updateRemoteList(remoteList) {
   store.dispatch({type: UPDATE_WEBRTC_REMOTELIST, payload: remoteList});
+}
+function updateRemoteSocketId(remoteSocketId) {
+  store.dispatch({type: UPDATE_WEBRTC_REMOTESOCKETID, payload: remoteSocketId});
+}
+function updateRemoteViewSrc(remoteViewSrc) {
+  store.dispatch({type: UPDATE_WEBRTC_REMOTEVIEWSRC, payload: remoteViewSrc});
 }
 function updateLocalStream(localStream) {
   store.dispatch({type: UPDATE_WEBRTC_LOCALSTREAM, payload: localStream});
@@ -160,8 +168,10 @@ function createPC(socketId, isOffer) {
     remoteList[socketId] = event.stream.toURL();
     console.log('-----remoteList in onaddstream------', remoteList);
     updateRemoteList(remoteList);
+    updateRemoteSocketId(socketId);
+    updateRemoteViewSrc(store.getState().webRTCReducer.selfViewSrc);
+    updateSelfViewSrc(event.stream.toURL());
     updateCallStatusConnected();
-    //console.log(container.state.remoteList);
   };
   pc.onremovestream = function(event) {
     console.log('onremovestream', event.stream);
@@ -229,10 +239,9 @@ function leave(socketId) {
     pc.close();
     //pcPeers = {};
   }
-  const remoteList = store.getState().webRTCReducer.remoteList;
-  delete remoteList[socketId];
-  updateRemoteList(remoteList);
-  //setInfo('One peer leave!');
+  // const remoteList = store.getState().webRTCReducer.remoteList;
+  // delete remoteList[socketId];
+  // updateRemoteList(remoteList);
 }
 
 function logError(error) {
@@ -266,6 +275,8 @@ function WebRTCCall(props) {
     localStream,
     selfViewSrc,
     callStatus,
+    remoteSocketId,
+    remoteViewSrc,
     navigation,
   } = props;
   useEffect(() => {
@@ -335,7 +346,7 @@ function WebRTCCall(props) {
       </View>
       <Draggable x={200} y={300} style={{position: 'absolute'}}>
         <RTCView
-          streamURL={remoteList[Object.keys(remoteList)[0]]}
+          streamURL={remoteViewSrc}
           style={styles.remoteView}
         />
       </Draggable>
@@ -438,6 +449,8 @@ const mapStateToProps = ({userReducer, contactsReducer, webRTCReducer}) => {
   const {
     isFront,
     remoteList,
+    remoteSocketId,
+    remoteViewSrc,
     selfViewSrc,
     localStream,
     callStatus,
@@ -447,6 +460,8 @@ const mapStateToProps = ({userReducer, contactsReducer, webRTCReducer}) => {
     user,
     isFront,
     remoteList,
+    remoteSocketId,
+    remoteViewSrc,
     selfViewSrc,
     localStream,
     callStatus,
