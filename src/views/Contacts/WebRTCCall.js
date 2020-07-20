@@ -281,12 +281,13 @@ function WebRTCCall(props) {
     }, 500);
   }, []);
   function endCall() {
-    resetWebRTCReducer();
     if (pcPeers.pc) {
       const pc = pcPeers.pc;
       pc.close();
       pcPeers = {socketId: undefined, pc: undefined};
     }
+    //localStream.release();
+    resetWebRTCReducer();
     navigation.navigate('Contacts');
   }
   function prepareCall() {

@@ -44,6 +44,11 @@ function Homepage(props) {
       props.getUserContacts();
     }
   }, [activeMenuButton]);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     props.getUserContacts();
+  //   }, 3000);
+  // }, []);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
