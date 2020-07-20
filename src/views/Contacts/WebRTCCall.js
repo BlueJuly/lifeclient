@@ -27,7 +27,6 @@ import {
 import {
   UPDATING_WEBRTCREDUCER,
   UPDATE_WEBRTC_ISFRONT,
-  UPDATE_WEBRTC_REMOTELIST,
   UPDATE_WEBRTC_REMOTESOCKETID,
   UPDATE_WEBRTC_REMOTEVIEWSRC,
   UPDATE_WEBRTC_SELFVIEWSRC,
@@ -66,11 +65,7 @@ function updateSelfViewSrc(selfViewSrc) {
   store.dispatch({type: UPDATE_WEBRTC_SELFVIEWSRC, payload: selfViewSrc});
 }
 function updateIsFront(isFront) {
-  console.log('++++isFront in updateISFront+++++', store.getState());
   store.dispatch({type: UPDATE_WEBRTC_ISFRONT, payload: isFront});
-}
-function updateRemoteList(remoteList) {
-  store.dispatch({type: UPDATE_WEBRTC_REMOTELIST, payload: remoteList});
 }
 function updateRemoteSocketId(remoteSocketId) {
   store.dispatch({type: UPDATE_WEBRTC_REMOTESOCKETID, payload: remoteSocketId});
@@ -164,10 +159,6 @@ function createPC(socketId, isOffer) {
 
   pc.onaddstream = function(event) {
     //console.log('onaddstream', event.stream);
-    let remoteList = store.getState().webRTCReducer.remoteList;
-    remoteList[socketId] = event.stream.toURL();
-    console.log('-----remoteList in onaddstream------', remoteList);
-    updateRemoteList(remoteList);
     updateRemoteSocketId(socketId);
     updateRemoteViewSrc(store.getState().webRTCReducer.selfViewSrc);
     updateSelfViewSrc(event.stream.toURL());
@@ -239,9 +230,6 @@ function leave(socketId) {
     pc.close();
     //pcPeers = {};
   }
-  // const remoteList = store.getState().webRTCReducer.remoteList;
-  // delete remoteList[socketId];
-  // updateRemoteList(remoteList);
 }
 
 function logError(error) {
@@ -271,7 +259,6 @@ function WebRTCCall(props) {
   const {
     user,
     isFront,
-    remoteList,
     localStream,
     selfViewSrc,
     callStatus,
@@ -284,7 +271,6 @@ function WebRTCCall(props) {
     (async () => {
       const localStreamTemp = await getLocalStream();
       updateLocalStream(localStreamTemp);
-      //setLocalStream(localStream);
       updateSelfViewSrc(localStreamTemp.toURL());
     })();
     setTimeout(async () => {
@@ -344,12 +330,11 @@ function WebRTCCall(props) {
           <Text style={styles.startCallText}>Start</Text>
         </TouchableOpacity>
       </View>
-      <Draggable x={200} y={300} style={{position: 'absolute'}}>
-        <RTCView
-          streamURL={remoteViewSrc}
-          style={styles.remoteView}
-        />
-      </Draggable>
+      {remoteViewSrc && (
+        <Draggable x={200} y={300} style={{position: 'absolute'}}>
+          <RTCView streamURL={remoteViewSrc} style={styles.remoteView} />
+        </Draggable>
+      )}
     </View>
   );
 }
@@ -448,7 +433,6 @@ const mapStateToProps = ({userReducer, contactsReducer, webRTCReducer}) => {
   const {user} = userReducer;
   const {
     isFront,
-    remoteList,
     remoteSocketId,
     remoteViewSrc,
     selfViewSrc,
@@ -459,7 +443,6 @@ const mapStateToProps = ({userReducer, contactsReducer, webRTCReducer}) => {
     contacts,
     user,
     isFront,
-    remoteList,
     remoteSocketId,
     remoteViewSrc,
     selfViewSrc,
