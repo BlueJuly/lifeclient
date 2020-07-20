@@ -53,6 +53,14 @@ export const connectSocketIO = () => async (dispatch, getState) => {
       user = await updateMobileDeviceInfoRequest(user);
       dispatch({type: UPDATE_DEVICE_INFO, payload: user});
     });
+    if (socket.id) {
+      user.mobileDevice = user.mobileDevice
+        ? {...user.mobileDevice, ...{socketId: socket.id, status: 'online'}}
+        : {socketId: socket.id, status: 'online'};
+      //console.log('----socket user ID ----', socket.id);
+      user = await updateMobileDeviceInfoRequest(user);
+      dispatch({type: UPDATE_DEVICE_INFO, payload: user});
+    }
     socket.on('disconnect', async () => {
       const socketInfo = {socketId: '', status: 'offline'};
       user.mobileDevice = user.mobileDevice

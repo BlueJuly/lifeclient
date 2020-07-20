@@ -14,3 +14,5 @@ export const UPDATE_WEBRTC_REMOTELIST = 'updating_webrtc_remotelist';
 export const UPDATE_WEBRTC_SELFVIEWSRC = 'updating_webrtc_selfviewsrc';
 export const UPDATE_WEBRTC_LOCALSTREAM = 'updating_webrtc_localstream';
 export const UPDATE_WEBRTC_FAILED = 'updating_webrtc_failed';
+export const RESET_WEBRTCREDUCER = 'reset_webrtcreducer';
+export const UPDATE_WEBRTC_CALLSTATUS = 'updating_webrtc_callstatus';

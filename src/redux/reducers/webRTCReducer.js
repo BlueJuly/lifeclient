@@ -4,7 +4,9 @@ import {
   UPDATE_WEBRTC_REMOTELIST,
   UPDATE_WEBRTC_SELFVIEWSRC,
   UPDATE_WEBRTC_LOCALSTREAM,
+  UPDATE_WEBRTC_CALLSTATUS,
   UPDATE_WEBRTC_FAILED,
+  RESET_WEBRTCREDUCER,
 } from '../type';
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   remoteList: {},
   selfViewSrc: undefined,
   localStream: undefined,
+  callStatus: '',
   err: '',
 };
 
@@ -22,45 +25,32 @@ export default (state = initialState, action) => {
     case UPDATING_WEBRTCREDUCER: {
       return {...state, updating: true};
     }
+    case RESET_WEBRTCREDUCER: {
+      return initialState;
+    }
     case UPDATE_WEBRTC_ISFRONT: {
       const isFront = action.payload;
-      console.log('-----webrtc reducer----', {
-        ...state,
-        isFront,
-        loading: false,
-      });
-      return {...state, isFront, loading: false};
+      return {...state, isFront};
+    }
+    case UPDATE_WEBRTC_CALLSTATUS: {
+      const callStatus = action.payload;
+      return {...state, callStatus};
     }
     case UPDATE_WEBRTC_REMOTELIST: {
       const remoteList = action.payload;
-      console.log('-----webrtc reducer----', {
-        ...state,
-        remoteList,
-        loading: false,
-      });
-      return {...state, remoteList, loading: false};
+      return {...state, remoteList};
     }
     case UPDATE_WEBRTC_SELFVIEWSRC: {
       const selfViewSrc = action.payload;
-      console.log('-----webrtc reducer----', {
-        ...state,
-        selfViewSrc,
-        loading: false,
-      });
-      return {...state, selfViewSrc, loading: false};
+      return {...state, selfViewSrc};
     }
     case UPDATE_WEBRTC_LOCALSTREAM: {
       const localStream = action.payload;
-      console.log('-----webrtc reducer----', {
-        ...state,
-        localStream,
-        loading: false,
-      });
-      return {...state, localStream, loading: false};
+      return {...state, localStream};
     }
     case UPDATE_WEBRTC_FAILED: {
       const {err} = action.payload;
-      return {...state, err, loading: false};
+      return {...state, err};
     }
     // Default
     default: {
