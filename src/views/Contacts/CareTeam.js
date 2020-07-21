@@ -36,7 +36,7 @@ function CareTeam(props) {
       <Header>
         <Left />
         <Body>
-          <Title>Careteam</Title>
+          <Title>Care Team</Title>
         </Body>
         <Right>
           <Button transparent>
