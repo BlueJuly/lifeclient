@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
 import Video from 'react-native-video';
 import {connect} from 'react-redux';
 import ImageView from 'react-native-image-viewing';
@@ -19,7 +19,20 @@ function TilesTab({navigation, tiles}) {
   console.log('getting into tiles tab');
   const [imageVisible, setImageVisible] = useState(false);
   const [tileImages, setTileImages] = useState([]);
-
+  const deleteTile = (tile) =>
+    Alert.alert(
+      'Delete Tile',
+      'Are you sure to delete this tile?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed', tile),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    );
   function openImageTile(tile) {
     const images = tile.resource.map(function(item) {
       return {uri: item.blobUrl};
@@ -81,7 +94,12 @@ function TilesTab({navigation, tiles}) {
               <CardItem>
                 <Left>
                   <Button transparent>
-                    <Icon size={30} color="#1E88E5" active name="file-document-edit" />
+                    <Icon
+                      size={30}
+                      color="#1E88E5"
+                      active
+                      name="file-document-edit"
+                    />
                     <Text>Edit</Text>
                   </Button>
                 </Left>
@@ -92,7 +110,7 @@ function TilesTab({navigation, tiles}) {
                   </Button>
                 </Body>
                 <Right>
-                  <Button transparent>
+                  <Button onPress = {()=>deleteTile(tile)} transparent>
                     <Icon size={30} color="#D50000" active name="delete" />
                     <Text>Delete</Text>
                   </Button>
