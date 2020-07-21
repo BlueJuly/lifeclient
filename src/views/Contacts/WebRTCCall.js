@@ -289,7 +289,7 @@ function WebRTCCall(props) {
     }
     //localStream.release();
     resetWebRTCReducer();
-    navigation.navigate('Contacts');
+    navigation.navigate('CareTeam');
   }
   function prepareCall() {
     console.log('-----local stream in prepareCall------', localStream);

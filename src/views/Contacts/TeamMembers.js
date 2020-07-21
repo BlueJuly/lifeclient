@@ -19,7 +19,7 @@ import {connect} from 'react-redux';
 import {getUserContacts} from '../../redux/actions/contactsAction';
 
 function TeamMembers(props) {
-  console.log('----reducers in Contacts 1 is-----', props);
+  console.log('----reducers in TeamMembers 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const {contacts, navigation, careteamMembers} = props;
 

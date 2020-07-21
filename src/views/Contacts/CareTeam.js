@@ -49,10 +49,10 @@ function CareTeam(props) {
       </Header>
       <Tabs renderTabBar={() => <ScrollableTab />}>
         <Tab heading="Contacts">
-          <ContactsTab />
+          <ContactsTab navigation={props.navigation} />
         </Tab>
         <Tab heading="Team Members">
-          <TeamMembersTab />
+          <TeamMembersTab navigation={props.navigation} />
         </Tab>
       </Tabs>
     </Container>
