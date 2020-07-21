@@ -28,6 +28,7 @@ import {getUserTiles} from '../../redux/actions/tilesAction';
 import {getUserContacts} from '../../redux/actions/contactsAction';
 import TilesScreen from './Tiles';
 import ContactsScreen from '../Contacts/Contacts';
+import CareTeamScreen from '../Contacts/CareTeam';
 import SchedulesScreen from '../Schedules/Schedules';
 import SettingsScreen from '../Settings/Settings';
 const Tab = createBottomTabNavigator();
@@ -58,7 +59,7 @@ function Homepage(props) {
             case 'Tiles':
               iconName = focused ? 'home' : 'home-outline';
               return <Icon name={iconName} size={30} color={color} />;
-            case 'Contacts':
+            case 'CareTeam':
               iconName = focused ? 'message' : 'message-outline';
               return <Icon name={iconName} size={30} color={color} />;
             case 'Schedules':
@@ -92,13 +93,13 @@ function Homepage(props) {
         })}
       />
       <Tab.Screen
-        name="Contacts"
-        component={ContactsScreen}
+        name="CareTeam"
+        component={CareTeamScreen}
         listeners={({navigation, route}) => ({
           tabPress: e => {
             e.preventDefault();
             setActiveMenuButton(2);
-            navigation.navigate('Contacts');
+            navigation.navigate('CareTeam');
           },
         })}
       />

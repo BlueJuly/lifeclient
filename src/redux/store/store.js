@@ -17,6 +17,7 @@ const persistConfig = {
     'tilesReducer',
     'contactsReducer',
     'webRTCReducer',
+    'careteamMembersReducer',
   ],
   // Blacklist (Don't Save Specific Reducers)
   blacklist: [],

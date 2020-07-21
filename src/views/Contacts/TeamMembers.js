@@ -18,37 +18,33 @@ import {
 import {connect} from 'react-redux';
 import {getUserContacts} from '../../redux/actions/contactsAction';
 
-function Contacts(props) {
+function TeamMembers(props) {
   console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
-  const {contacts, navigation} = props;
-  useEffect(() => {
-    console.log('----reducers in Contact 2 is-----', props);
-    //props.updateDeviceInfo();
-    props.getUserContacts();
-    //setAllTiles(props.tiles);
-    console.log('----reducers in Contact 3 is-----', props);
-  }, [activeMenuButton]);
+  const {contacts, navigation, careteamMembers} = props;
+
   return (
     <Content>
       <List>
-        {contacts.map((contact, index) => {
+        {careteamMembers.map((careteamMember, index) => {
           return (
             <ListItem
               avatar
               onPress={() => {
-                navigation.navigate('WebRTCCall', contact);
+                navigation.navigate('WebRTCCall', careteamMember);
               }}
               key={index}>
               <Left>
-                <Thumbnail source={{uri: contact.profileImage.blobUrl}} />
+                <Thumbnail
+                  source={{uri: careteamMember.profileImage.blobUrl}}
+                />
               </Left>
               <Body>
-                <Text>{contact.username}</Text>
+                <Text>{careteamMember.username}</Text>
                 <Text note />
                 <Text note>
-                  {contact.mobileDevice && contact.mobileDevice.socketId
-                    ? contact.mobileDevice.socketId
+                  {careteamMember.mobileDevice && careteamMember.mobileDevice.socketId
+                    ? careteamMember.mobileDevice.socketId
                     : 'offline'}
                 </Text>
                 <Text note />
@@ -64,9 +60,14 @@ function Contacts(props) {
   );
 }
 
-const mapStateToProps = ({userReducer, contactsReducer}) => {
+const mapStateToProps = ({
+  userReducer,
+  contactsReducer,
+  careteamMembersReducer,
+}) => {
   const {contacts} = contactsReducer;
-  return {contacts};
+  const {careteamMembers} = careteamMembersReducer;
+  return {contacts, careteamMembers};
 };
 
 const mapDispatchToProps = {
@@ -76,4 +77,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Contacts);
+)(TeamMembers);
