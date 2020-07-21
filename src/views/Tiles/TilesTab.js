@@ -6,7 +6,6 @@ import ImageView from 'react-native-image-viewing';
 import {
   Content,
   Button,
-  Icon,
   Card,
   CardItem,
   Thumbnail,
@@ -15,6 +14,7 @@ import {
   Right,
   Tab,
 } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 function TilesTab({navigation, tiles}) {
   console.log('getting into tiles tab');
   const [imageVisible, setImageVisible] = useState(false);
@@ -81,18 +81,21 @@ function TilesTab({navigation, tiles}) {
               <CardItem>
                 <Left>
                   <Button transparent>
-                    <Icon active name="thumbs-up" />
-                    <Text>12 Likes</Text>
+                    <Icon size={30} color="#1E88E5" active name="file-document-edit" />
+                    <Text>Edit</Text>
                   </Button>
                 </Left>
                 <Body>
-                  <Button transparent>
-                    <Icon active name="chatbubbles" />
-                    <Text>4 Comments</Text>
+                  <Button style={{justifyContent: 'center'}} transparent>
+                    <Icon size={30} color="#1E88E5" active name="share" />
+                    <Text>Share</Text>
                   </Button>
                 </Body>
                 <Right>
-                  <Text>11h ago</Text>
+                  <Button transparent>
+                    <Icon size={30} color="#D50000" active name="delete" />
+                    <Text>Delete</Text>
+                  </Button>
                 </Right>
               </CardItem>
             </Card>
