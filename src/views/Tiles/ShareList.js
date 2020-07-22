@@ -17,13 +17,19 @@ import {
   Subtitle,
 } from 'native-base';
 import {connect} from 'react-redux';
-import {getCareteamMembers} from '../../redux/actions/careteamMembersAction';
+import {getUserCareteamMembers} from '../../redux/actions/careteamMembersAction';
 
 function ShareList(props) {
   console.log('----reducers in ShareLsit 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const {navigation, careteamMembers} = props;
   const tile = props.route.params;
+  useEffect(() => {
+    //props.updateDeviceInfo();
+    //props.getCareteamMembers();
+    getUserCareteamMembers();
+    //setAllTiles(props.tiles);
+  }, [activeMenuButton]);
   function goBack() {
     navigation.navigate('Homepage');
   }
@@ -96,7 +102,7 @@ const mapStateToProps = ({userReducer, careteamMembersReducer}) => {
 };
 
 const mapDispatchToProps = {
-  getCareteamMembers,
+  getUserCareteamMembers,
 };
 
 export default connect(
