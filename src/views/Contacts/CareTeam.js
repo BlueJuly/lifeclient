@@ -16,10 +16,10 @@ import {
 } from 'native-base';
 import {connect} from 'react-redux';
 import {getUserContacts} from '../../redux/actions/contactsAction';
-import {getUserCareTeamMembers} from '../../redux/actions/careteamMembersAction';
+import {getUserCareteamMembers} from '../../redux/actions/careteamMembersAction';
 import ContactsTab from './Contacts';
 import TeamMembersTab from './TeamMembers';
-function CareTeam(props) {
+function Careteam(props) {
   console.log('----reducers in Contacts 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const {contacts, navigation} = props;
@@ -27,7 +27,7 @@ function CareTeam(props) {
     console.log('----reducers in Contact 2 is-----', props);
     //props.updateDeviceInfo();
     props.getUserContacts();
-    props.getUserCareTeamMembers();
+    props.getUserCareteamMembers();
     //setAllTiles(props.tiles);
     console.log('----reducers in Contact 3 is-----', props);
   }, [activeMenuButton]);
@@ -71,10 +71,10 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = {
   getUserContacts,
-  getUserCareTeamMembers,
+  getUserCareteamMembers,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CareTeam);
+)(Careteam);

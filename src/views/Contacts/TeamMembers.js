@@ -16,12 +16,12 @@ import {
   ListItem,
 } from 'native-base';
 import {connect} from 'react-redux';
-import {getUserContacts} from '../../redux/actions/contactsAction';
+import {getCareteamMembers} from '../../redux/actions/careteamMembersAction';
 
 function TeamMembers(props) {
   console.log('----reducers in TeamMembers 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
-  const {contacts, navigation, careteamMembers} = props;
+  const {navigation, careteamMembers} = props;
 
   return (
     <Content>
@@ -31,7 +31,8 @@ function TeamMembers(props) {
             <ListItem
               avatar
               onPress={() => {
-                navigation.navigate('WebRTCCall', careteamMember);
+                // navigation.navigate('WebRTCCall', careteamMember);
+                console.log('Click on team member');
               }}
               key={index}>
               <Left>
@@ -47,7 +48,6 @@ function TeamMembers(props) {
                     ? careteamMember.mobileDevice.socketId
                     : 'offline'}
                 </Text>
-                <Text note />
               </Body>
               <Right>
                 <Text note>3:43 pm</Text>
@@ -60,18 +60,13 @@ function TeamMembers(props) {
   );
 }
 
-const mapStateToProps = ({
-  userReducer,
-  contactsReducer,
-  careteamMembersReducer,
-}) => {
-  const {contacts} = contactsReducer;
+const mapStateToProps = ({userReducer, careteamMembersReducer}) => {
   const {careteamMembers} = careteamMembersReducer;
-  return {contacts, careteamMembers};
+  return {careteamMembers};
 };
 
 const mapDispatchToProps = {
-  getUserContacts,
+  getCareteamMembers,
 };
 
 export default connect(

@@ -49,6 +49,9 @@ function TilesTab({navigation, tiles}) {
   function openWebViewTile(tile) {
     navigation.navigate('WebView', tile);
   }
+  function shareTile(tile) {
+    navigation.navigate('ShareList', tile);
+  }
   return (
     <Content>
       <ImageView
@@ -104,13 +107,16 @@ function TilesTab({navigation, tiles}) {
                   </Button>
                 </Left>
                 <Body>
-                  <Button style={{justifyContent: 'center'}} transparent>
+                  <Button
+                    onPress={() => shareTile(tile)}
+                    style={{justifyContent: 'center'}}
+                    transparent>
                     <Icon size={30} color="#1E88E5" active name="share" />
                     <Text>Share</Text>
                   </Button>
                 </Body>
                 <Right>
-                  <Button onPress = {()=>deleteTile(tile)} transparent>
+                  <Button onPress={() => deleteTile(tile)} transparent>
                     <Icon size={30} color="#D50000" active name="delete" />
                     <Text>Delete</Text>
                   </Button>

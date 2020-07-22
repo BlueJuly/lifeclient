@@ -5,7 +5,7 @@ import {
   FETCH_CONTACTS_FAILED,
 } from '../type';
 import {getUserContactsRequest} from '../api/apiRequest';
-export const getUserCareTeamMembers = () => async (dispatch, getState) => {
+export const getUserCareteamMembers = () => async (dispatch, getState) => {
   dispatch({type: FETCHING_CONTACTS});
   try {
     let {user} = getState().userReducer;

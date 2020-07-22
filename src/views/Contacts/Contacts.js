@@ -51,7 +51,6 @@ function Contacts(props) {
                     ? contact.mobileDevice.socketId
                     : 'offline'}
                 </Text>
-                <Text note />
               </Body>
               <Right>
                 <Text note>3:43 pm</Text>

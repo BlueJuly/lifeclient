@@ -12,6 +12,7 @@ import Homepage from './views/Tiles/Homepage';
 import VideoPlayer from './views/Tiles/VideoPlayer';
 import PDFReader from './views/Tiles/PDFReader';
 import WebView from './views/Tiles/WebView';
+import ShareList from './views/Tiles/ShareList';
 import WebRTCCall from './views/Contacts/WebRTCCall';
 const Stack = createStackNavigator();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
@@ -83,6 +84,11 @@ export default function App() {
             <Stack.Screen
               name="WebRTCCall"
               component={WebRTCCall}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ShareList"
+              component={ShareList}
               options={{headerShown: false}}
             />
           </Stack.Navigator>
