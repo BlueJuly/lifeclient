@@ -43,7 +43,7 @@ function Homepage(props) {
     }
     if (activeMenuButton === 2) {
       props.getUserContacts();
-      getUserCareteamMembers();
+      props.getUserCareteamMembers();
     }
   }, [activeMenuButton]);
   // useEffect(() => {
