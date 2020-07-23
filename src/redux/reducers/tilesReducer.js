@@ -13,7 +13,6 @@ export default (state = initialState, action) => {
     }
     case FETCH_TILES_SUCCESS: {
       const tiles = action.payload;
-      console.log('-----tiles reducer----', {...state, tiles, loading: false});
       return {...state, tiles, loading: false};
     }
     case FETCH_TILES_FAILED: {

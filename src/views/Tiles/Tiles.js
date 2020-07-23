@@ -24,7 +24,6 @@ import {getUserTiles} from '../../redux/actions/tilesAction';
 import TilesTab from './TilesTab';
 
 function Tiles(props) {
-  console.log('----reducers in Tiles is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [allTiles, setAllTiles] = useState([]);
   useEffect(() => {
@@ -32,7 +31,6 @@ function Tiles(props) {
     props.updateDeviceInfo();
     props.getUserTiles();
     setAllTiles(props.tiles);
-    console.log('----reducers in Tiles is-----', props);
   }, [activeMenuButton]);
   return (
     <Container>

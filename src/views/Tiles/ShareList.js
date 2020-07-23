@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 import {connect} from 'react-redux';
 import {getUserCareteamMembers} from '../../redux/actions/careteamMembersAction';
-
+import {addTileToUser} from '../../redux/api/apiRequest';
 function ShareList(props) {
   console.log('----reducers in ShareLsit 1 is-----', props);
   const [activeMenuButton, setActiveMenuButton] = useState(1);
@@ -33,7 +33,7 @@ function ShareList(props) {
   function goBack() {
     navigation.navigate('Homepage');
   }
-  const shareTileConfirm = () =>
+  const shareTileConfirm = (tileId, userId) =>
     Alert.alert(
       'Delete Tile',
       'Are you sure to delete this tile?',
@@ -43,7 +43,7 @@ function ShareList(props) {
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+        {text: 'OK', onPress: () => addTileToUser(tileId, userId)},
       ],
       {cancelable: false},
     );
@@ -67,7 +67,7 @@ function ShareList(props) {
             return (
               <ListItem
                 avatar
-                onPress={() => shareTileConfirm()}
+                onPress={() => shareTileConfirm(tile._id, careteamMember._id)}
                 key={index}>
                 <Left>
                   <Thumbnail

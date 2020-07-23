@@ -59,6 +59,23 @@ export const getUserTilesRequest = async function(user) {
   }
 };
 
+export const addTileToUser = async function(tileId, userId) {
+  try {
+    let res = await fetch(GetUserTilesAPI + userId + '/tiles/' + tileId, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    const resJson = await res.json();
+    console.log('----add tile to user response----', resJson);
+    return resJson;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getUserContactsRequest = async function(user) {
   try {
     let res = await fetch(GetUserTilesAPI + user._id + '/contacts', {
