@@ -26,8 +26,8 @@ function Careteam(props) {
   useEffect(() => {
     console.log('----reducers in Contact 2 is-----', props);
     //props.updateDeviceInfo();
-    props.getUserContacts();
-    props.getUserCareteamMembers();
+    // props.getUserContacts();
+    // props.getUserCareteamMembers();
     //setAllTiles(props.tiles);
     console.log('----reducers in Contact 3 is-----', props);
   }, [activeMenuButton]);

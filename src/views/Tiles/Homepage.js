@@ -26,6 +26,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {updateDeviceInfo, connectSocketIO} from '../../redux/actions';
 import {getUserTiles} from '../../redux/actions/tilesAction';
 import {getUserContacts} from '../../redux/actions/contactsAction';
+import {getUserCareteamMembers} from '../../redux/actions/careteamMembersAction';
 import TilesScreen from './Tiles';
 import CareTeamScreen from '../Contacts/Careteam';
 import SchedulesScreen from '../Schedules/Schedules';
@@ -42,6 +43,7 @@ function Homepage(props) {
     }
     if (activeMenuButton === 2) {
       props.getUserContacts();
+      getUserCareteamMembers();
     }
   }, [activeMenuButton]);
   // useEffect(() => {
@@ -137,6 +139,7 @@ const mapDispatchToProps = {
   getUserTiles,
   connectSocketIO,
   getUserContacts,
+  getUserCareteamMembers,
 };
 export default connect(
   mapStateToProps,
