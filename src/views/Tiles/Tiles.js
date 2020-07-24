@@ -19,8 +19,8 @@ import {
   ScrollableTab,
 } from 'native-base';
 import {connect} from 'react-redux';
-import {updateDeviceInfo} from '../../redux/actions';
-import {getUserTiles} from '../../redux/actions/tilesAction';
+// import {updateDeviceInfo} from '../../redux/actions';
+// import {getUserTiles} from '../../redux/actions/tilesAction';
 import TilesTab from './TilesTab';
 
 function Tiles(props) {
@@ -30,8 +30,6 @@ function Tiles(props) {
   const {tilesReducer} = props;
   useEffect(() => {
     //console.log('----reducers in Tiles is-----', props);
-    props.updateDeviceInfo();
-    props.getUserTiles();
     setAllTiles(props.tiles);
   }, [activeMenuButton]);
   return (
@@ -86,8 +84,8 @@ const mapStateToProps = ({userReducer, tilesReducer}) => {
 };
 
 const mapDispatchToProps = {
-  updateDeviceInfo,
-  getUserTiles,
+  // updateDeviceInfo,
+  // getUserTiles,
 };
 
 export default connect(
