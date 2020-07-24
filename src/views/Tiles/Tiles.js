@@ -26,8 +26,10 @@ import TilesTab from './TilesTab';
 function Tiles(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   const [allTiles, setAllTiles] = useState([]);
+  console.log('----props in Tiles is-----', props);
+  const {tilesReducer} = props;
   useEffect(() => {
-    console.log('----reducers in Tiles is-----', props);
+    //console.log('----reducers in Tiles is-----', props);
     props.updateDeviceInfo();
     props.getUserTiles();
     setAllTiles(props.tiles);
@@ -50,7 +52,7 @@ function Tiles(props) {
       </Header>
       <Tabs renderTabBar={() => <ScrollableTab />}>
         <Tab heading="All Tiles">
-          <TilesTab tiles={props.tiles} navigation={props.navigation} />
+          <TilesTab tilesReducer={tilesReducer} navigation={props.navigation} />
         </Tab>
         <Tab heading="Image Tiles">
           <View>
@@ -78,9 +80,9 @@ function Tiles(props) {
 }
 
 const mapStateToProps = ({userReducer, tilesReducer}) => {
-  //console.log('----user in Tiles is-----', userReducer);
-  const {tiles} = tilesReducer;
-  return {tiles};
+  console.log('----user in Tiles is-----', tilesReducer);
+  //const {tiles} = tilesReducer;
+  return {tilesReducer};
 };
 
 const mapDispatchToProps = {

@@ -35,8 +35,8 @@ function ShareList(props) {
   }
   const shareTileConfirm = (tileId, userId) =>
     Alert.alert(
-      'Delete Tile',
-      'Are you sure to delete this tile?',
+      'Share Tile',
+      'Are you sure to share this tile?',
       [
         {
           text: 'Cancel',

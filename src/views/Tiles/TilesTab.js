@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {Text, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, Image, Alert, RefreshControl} from 'react-native';
 import Video from 'react-native-video';
 import {connect} from 'react-redux';
 import ImageView from 'react-native-image-viewing';
@@ -15,10 +15,23 @@ import {
   Tab,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-function TilesTab({navigation, tiles}) {
-  console.log('getting into tiles tab');
+import {getUserTiles} from '../../redux/actions/tilesAction';
+const wait = (timeout) => {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
+function TilesTab(props) {
+  //console.log('getting into tiles tab', props);
+  const {navigation, tilesReducer, getUserTiles} = props;
+  const {tiles} = tilesReducer;
+  const loadingTiles = tilesReducer.loading;
   const [imageVisible, setImageVisible] = useState(false);
   const [tileImages, setTileImages] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = () =>{
+    getUserTiles();
+  }
   const deleteTile = (tile) =>
     Alert.alert(
       'Delete Tile',
@@ -53,7 +66,9 @@ function TilesTab({navigation, tiles}) {
     navigation.navigate('ShareList', tile);
   }
   return (
-    <Content>
+    <Content refreshControl={
+      <RefreshControl refreshing={loadingTiles} onRefresh={onRefresh} />
+    }>
       <ImageView
         images={tileImages}
         imageIndex={0}
@@ -144,12 +159,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-// const mapStateToProps = ({userReducer}) => {
-//   //console.log('----user in VideoPlayer view is-----', userReducer);
-//   return userReducer;
-// };
+const mapStateToProps = ({userReducer}) => {
+  //console.log('----user in VideoPlayer view is-----', userReducer);
+  return {};
+};
 
-// const mapDispatchToProps = {
-// };
+const mapDispatchToProps = {
+  getUserTiles,
+};
 
-export default TilesTab;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TilesTab);
