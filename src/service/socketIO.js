@@ -3,7 +3,7 @@ let socket;
 export const socketService = function socketService(userId, token) {
   //console.log('~~~~~~~~~socket Service', userId);
   if (!socket) {
-    socket = io.connect('http://192.168.0.21:4001', {
+    socket = io.connect('http://192.168.0.25:4001', {
       transports: ['websocket'],
       query: {
         userId: userId,

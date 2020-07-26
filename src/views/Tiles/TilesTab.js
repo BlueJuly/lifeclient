@@ -62,6 +62,9 @@ function TilesTab(props) {
   function openWebViewTile(tile) {
     navigation.navigate('WebView', tile);
   }
+  function openPBIReportTile(tile) {
+    navigation.navigate('PBIReport', tile);
+  }
   function shareTile(tile) {
     navigation.navigate('ShareList', tile);
   }
@@ -91,6 +94,9 @@ function TilesTab(props) {
               }
               if (tile.type === 'website') {
                 openWebViewTile(tile);
+              }
+              if (tile.type === 'desktopreport' || tile.type === 'mobilereport') {
+                openPBIReportTile(tile);
               }
             }}>
             <Card>

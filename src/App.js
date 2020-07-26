@@ -12,6 +12,7 @@ import Homepage from './views/Tiles/Homepage';
 import VideoPlayer from './views/Tiles/VideoPlayer';
 import PDFReader from './views/Tiles/PDFReader';
 import WebView from './views/Tiles/WebView';
+import PBIReport from './views/Tiles/PBIReport';
 import ShareList from './views/Tiles/ShareList';
 import WebRTCCall from './views/Contacts/WebRTCCall';
 const Stack = createStackNavigator();
@@ -79,6 +80,11 @@ export default function App() {
             <Stack.Screen
               name="WebView"
               component={WebView}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PBIReport"
+              component={PBIReport}
               options={{headerShown: false}}
             />
             <Stack.Screen

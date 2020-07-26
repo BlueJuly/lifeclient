@@ -37,7 +37,6 @@ function Homepage(props) {
   const [activeMenuButton, setActiveMenuButton] = useState(1);
   useEffect(() => {
     if (activeMenuButton === 1) {
-      console.log("****count****");
       props.updateDeviceInfo();
       props.getUserTiles();
       props.connectSocketIO();
