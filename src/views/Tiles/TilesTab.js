@@ -1,8 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {Text, TouchableOpacity, StyleSheet, Image, Alert, RefreshControl} from 'react-native';
+import {TouchableOpacity, StyleSheet, Image, Alert, RefreshControl} from 'react-native';
 import Video from 'react-native-video';
 import {connect} from 'react-redux';
 import ImageView from 'react-native-image-viewing';
+import TTS from 'react-native-tts';
 import {
   Content,
   Button,
@@ -13,6 +14,7 @@ import {
   Body,
   Right,
   Tab,
+  Text,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getUserTiles} from '../../redux/actions/tilesAction';
@@ -28,7 +30,6 @@ function TilesTab(props) {
   const loadingTiles = tilesReducer.loading;
   const [imageVisible, setImageVisible] = useState(false);
   const [tileImages, setTileImages] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
   const onRefresh = () =>{
     getUserTiles();
   }
@@ -68,6 +69,14 @@ function TilesTab(props) {
   function shareTile(tile) {
     navigation.navigate('ShareList', tile);
   }
+  function playTTS(tile){
+    TTS.getInitStatus().then(() => {
+      TTS.addEventListener('tts-start', (event) => console.log("start", event));
+      TTS.addEventListener('tts-finish', (event) => console.log("finish", event));
+      TTS.addEventListener('tts-cancel', (event) => console.log("cancel", event));
+      TTS.speak(tile.tileName + tile.description);
+    });
+  }
   return (
     <Content refreshControl={
       <RefreshControl refreshing={loadingTiles} onRefresh={onRefresh} />
@@ -98,7 +107,11 @@ function TilesTab(props) {
               if (tile.type === 'desktopreport' || tile.type === 'mobilereport') {
                 openPBIReportTile(tile);
               }
+              if (tile.type === 'tts') {
+                playTTS(tile);
+              }
             }}>
+            
             <Card>
               <CardItem>
                 <Left>
@@ -109,11 +122,16 @@ function TilesTab(props) {
                   </Body>
                 </Left>
               </CardItem>
-              <CardItem cardBody>
-                <Image
-                  source={{uri: tile.profileImage.blobUrl}}
-                  style={{height: 200, width: null, flex: 1}}
-                />
+              <CardItem>
+                <Body>
+                  <Image
+                    source={{uri: tile.profileImage.blobUrl}}
+                    style={{height: 200,width:370, flex: 1}}
+                  />
+                  {
+                    tile.description &&  <Text>{tile.description}</Text>
+                  }
+                </Body>
               </CardItem>
               <CardItem>
                 <Left>
@@ -153,7 +171,7 @@ function TilesTab(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   backgroundVideo: {
     position: 'absolute',
