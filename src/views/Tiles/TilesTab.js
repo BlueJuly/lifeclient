@@ -79,7 +79,7 @@ function TilesTab(props) {
   }
   return (
     <Content refreshControl={
-      <RefreshControl refreshing={loadingTiles} onRefresh={onRefresh} />
+      <RefreshControl refreshing={loadingTiles} onRefresh={onRefresh} colors = {["#D50000"]} tintColor = "#D50000" />
     }>
       <ImageView
         images={tileImages}
